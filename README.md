@@ -1,7 +1,7 @@
 Imitate snippets feature of Sublime Text, and bring it to Brackets.
 
 ## Screen demo
-![demo.gif](http://www.revolunet.com/static/parisjs8/img/logo-revolunet-carre.jpg "Demo")
+![brackets-snippets-demo.gif](http://edwardchu.org/assets/images/brackets-snippets-demo.gif "Demo gif of the extension")
 > Gif size ~500kb
 
 ## Features
@@ -150,7 +150,7 @@ Imitate snippets feature of Sublime Text, and bring it to Brackets.
 Please don't hesitate to contribute if you have any good snippets.
 
 ## Install
-Search `Brackets Snippets (by edc)` in Brackets market, install then reload Brackets.
+Search `Brackets Snippets (by edc)` in Brackets extension market, install then reload Brackets.
 
 ## How to add your own and edit the default snippets
 Since the Manager UI is not finished, you have to find and edit the file which stores the snippets, here's steps:
