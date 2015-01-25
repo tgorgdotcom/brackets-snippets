@@ -1,17 +1,17 @@
 Imitate snippets feature of Sublime Text, and bring it to Brackets.
 
-## Screen demo
+# Screen demo
 ![brackets-snippets-demo.gif](http://edwardchu.org/assets/images/brackets-snippets-demo.gif "Demo gif of the extension")
 > Gif size ~500kb, please wait until loaded
 
-## Features
+# Features
 1. Insert snippets by pressing `Tab` key
 2. Multiple variables support
 3. Select next variables by pressing `Tab` key
 4. Edit multiple variables one time
 
-## Default snippets
-### Javascript
+# Default snippets
+### Javascript Snippets
 > Snippets from [zenorocha/sublime-javascript-snippets](https://github.com/zenorocha/sublime-javascript-snippets)
 
 #### Console
@@ -147,22 +147,26 @@ Imitate snippets feature of Sublime Text, and bring it to Brackets.
     }, ${1:delay});${3}
     ```
 
-### Others
+### Others languages Snippets
 Please don't hesitate to contribute if you have any good snippets.
 
-## Install
-Search `Brackets Snippets (by edc)` in Brackets extension market, install then reload Brackets.
+# Installation
+Search `Brackets Snippets (by edc)` in Brackets extension market, install it and then reload Brackets.
 
-## How to add your own and edit the default snippets
-Since the Manager UI is not finished, you have to find and edit the file which stores the snippets, here's steps:
+# How to add your own or edit default snippets
+Since the Manager UI is not finished, you have to edit the file which stores all the snippets.
+Here's steps:
 
 1. Click Menu `Help` --> `Show Extensions Folder`
 2. Open `/user/edc.brackets-snippets/hints.yml`, edit and save.
 3. Reload Brackets
 
-## Todo
+Whenever the UI comes out, you will not have to do this.
+
+# Todo
 1. Add Snippets Manager UI, allows user to edit snippets
 2. Allow every snippet to have its description
+3. Add testing
 
-## Credits
+# Credits
 [JavaScript & NodeJS Snippets for Sublime Text 2/3](https://github.com/zenorocha/sublime-javascript-snippets)
