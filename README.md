@@ -2,12 +2,13 @@ Imitate snippets feature of Sublime Text, and bring it to Brackets.
 
 ## Screen demo
 ![brackets-snippets-demo.gif](http://edwardchu.org/assets/images/brackets-snippets-demo.gif "Demo gif of the extension")
-> Gif size ~500kb
+> Gif size ~500kb, please wait until loaded
 
 ## Features
 1. Insert snippets by pressing `Tab` key
-2. Allow to add variables with the default value
-3. Select next variables to edit by pressing `Tab` key
+2. Multiple variables support
+3. Select next variables by pressing `Tab` key
+4. Edit multiple variables one time
 
 ## Default snippets
 ### Javascript
