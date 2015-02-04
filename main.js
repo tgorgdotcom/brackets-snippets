@@ -15,7 +15,7 @@ define(function (require, exports, module) {
       EditorManager  = brackets.getModule("editor/EditorManager"),
       Menus          = brackets.getModule("command/Menus");
 
-  var Hinter = require('./lib/index');
+  var Hinter = require('./lib/Hinter');
   var hinter;
 
   function activeEditorChangeHandler (bracketsEvent, focusedEditor, lostEditor) {
