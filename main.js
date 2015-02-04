@@ -15,8 +15,10 @@ define(function (require, exports, module) {
       EditorManager  = brackets.getModule("editor/EditorManager"),
       Menus          = brackets.getModule("command/Menus");
 
-  var Hinter = require('./lib/Hinter');
-  var hinter;
+  var Hinter = require('./lib/Hinter'),
+      HintWidget = require('./widget/main');
+
+  var hinter, hintWidget;
 
   function activeEditorChangeHandler (bracketsEvent, focusedEditor, lostEditor) {
     if (lostEditor) {
@@ -29,6 +31,8 @@ define(function (require, exports, module) {
     if (focusedEditor) {
       if (!hinter) {
         hinter = new Hinter(focusedEditor);
+        hintWidget = new HintWidget();
+        hintWidget.init(hinter);
       } else {
         hinter.reinit(focusedEditor);
       }

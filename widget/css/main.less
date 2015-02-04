@@ -1,0 +1,86 @@
+#edc-brackets-snippets-btn {
+  background: url('images/icon.svg') no-repeat center top transparent;
+
+  > .active{
+    background-position: center bottom;
+  }
+}
+
+#edc-brackets-snippets-panel {
+  .msg {
+    font-size: 90%;
+    margin: 0 10px;
+  }
+
+  > .toolbar {
+    min-height: 26px;
+
+    > .right-area {
+      position: absolute;
+      right: 42px;
+      top: 50%;
+      margin-top: -14px;
+    }
+  }
+
+  > .resizable-content {
+    display: flex;
+
+    > .left-panel, >.right-panel {
+      overflow-y: scroll;
+      padding: 15px 20px 0 0;
+    }
+
+    > .left-panel {
+      flex: 1;
+      max-width: 300px;
+
+      > .control-btns {
+        padding: 0 10px 5px;
+      }
+
+    }
+
+    > .right-panel {
+      flex: 2;
+
+      > .intro {
+        padding: 0 10px 10px;
+      }
+    }
+
+  }
+
+  .label {
+    color: #FFF !important;
+    margin: 0 2px 0 1px;
+  }
+
+  .alert {
+    margin-top: 4px;
+
+    > div:not(:last-child) {
+      margin-bottom: 5px;
+    }
+    > .label {
+      font-size: 90%;
+    }
+  }
+
+  .snippet-item {
+
+    .close {
+      display: none;
+    }
+
+    &.active .close {
+      color: #FFF;
+    }
+
+    &:hover {
+      .close {
+        display: block;
+      }
+    }
+  }
+}

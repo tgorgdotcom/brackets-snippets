@@ -1,0 +1,83 @@
+<form id="edc-brackets-snippets-panel" class="bottom-panel vert-resizable top-resizer" ng-app="snippets-manager" ng-controller="SnippetsCtrl" name="form">
+  <div class="toolbar simple-toolbar-layout clearfix">
+    <div class="title">
+      <span>Snippets Manager</span>
+    </div>
+    <div class="right-area">
+      <span class="msg text-success" ng-if="showMsg">
+        All snippets are up to date!
+      </span>
+      <button class="btn" ng-disabled="form.$invalid" ng-if="editingObj" ng-click="save(editingObj)">Save <small ng-if="form.$invalid">(Fill in required data first)</small></button>
+      <button class="btn" ng-if="editingObj" ng-click="cancelEdit()">Cancel</button>
+    </div>
+    <div class="actions">
+      <button class="close">&times;</button>
+    </div>
+  </div>
+
+  <div class="resizable-content">
+    <!-- Left -->
+    <div class="left-panel">
+      <div class="control-btns"><button class="btn" ng-click="toNew()">New +</button></div>
+      <ul class="nav nav-list" ng-repeat="(key, group) in groupedSnippets">
+        <li class="nav-header">{{key}}</li>
+        <li class="snippet-item" ng-repeat="snippet in group | orderBy: 'trigger' track by snippet.trigger"
+          ng-click="toEdit(snippet)"
+          ng-class="{active: originalObj === snippet}">
+          <a>
+            <span class="label label-info">{{snippet.trigger}}</span> <small>{{snippet.description}}</small>
+            <button class="close" ng-click="remove(snippet)">&times;</button>
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Right -->
+    <div class="right-panel">
+
+      <!-- Brief editing area -->
+      <div ng-if="editingObj" class="form-horizontal">
+        <div class="control-group" ng-class="{error: triggerErr || form.trigger.$error.pattern}" >
+          <label class="control-label">Trigger</label>
+          <div class="controls">
+            <input type="text" name="trigger" ng-model="editingObj.trigger" placeholder="Trigger Key" required ng-pattern="/^[^\s]+$/">
+            <div class="help-block" ng-show="triggerErr">Trigger is conflicted in current scope, please choose another one.</div>
+            <div class="help-block" ng-show="form.trigger.$error.pattern">White space is permitted.</div>
+          </div>
+        </div>
+        <div class="control-group">
+          <label class="control-label">Description <small>(Optional)</small></label>
+          <div class="controls">
+            <input type="text" ng-model="editingObj.description" placeholder="Description (Appeared on list)">
+          </div>
+        </div>
+        <div class="control-group">
+          <label class="control-label">Scope</label>
+          <div class="controls">
+            <select ng-options="lang.id as lang.name for lang in definedLanguages" ng-model="editingObj.scope" required></select>
+          </div>
+        </div>
+        <div class="control-group">
+          <label class="control-label">Text</label>
+          <div class="controls">
+            <textarea rows="3" ng-model="editingObj.text" placeholder="Snippet Text" required></textarea>
+            <div class="alert alert-info" style="font-size: 90%;">
+              <div>Variable format: <span class="label label-info">${NUMBER:STRING}</span>, eg: ${1:obj}</div>
+              <div>Caret format: <span class="label label-info">${NUMBER}</span>, eg: ${2}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Intro -->
+      <div class="intro" ng-if="!editingObj">
+        <h1>Brackets Snippets <small>(by edc)</small></h1>
+        <p>
+          <img src="http://edwardchu.org/assets/images/brackets-snippets-demo.gif" alt="Screen Demo">
+        </p>
+
+        <p>If any thoughts, please feel free to create an <a href="https://github.com/chuyik/brackets-snippets/issues">issue</a> on Github.</p>
+      </div>
+    </div>
+  </div>
+</form>
