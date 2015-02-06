@@ -5,7 +5,7 @@ Imitate snippets feature of Sublime Text, and bring it to Brackets.
 > Gif size ~500kb, please wait until loaded
 
 # Snippets Manager
-![snippets-manager.png](http://edwardchu.org/assets/images/snippets-manager.png "Snippets Manager Screenshot")
+![snippets-manager.png](http://edwardchu.org/assets/images/snippets-manager@2x.png "Snippets Manager Screenshot")
 
 # Features
 1. Insert snippets by pressing `Tab` key
