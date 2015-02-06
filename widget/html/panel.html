@@ -18,14 +18,33 @@
   <div class="resizable-content">
     <!-- Left -->
     <div class="left-panel">
-      <div class="control-btns"><button class="btn" ng-click="toNew()">New +</button></div>
-      <ul class="nav nav-list" ng-repeat="(key, group) in groupedSnippets">
-        <li class="nav-header">{{key}}</li>
-        <li class="snippet-item" ng-repeat="snippet in group | orderBy: 'trigger' track by snippet.trigger"
+
+      <!-- Buttons -->
+      <div class="control-btns">
+        <button class="btn" ng-click="toNew()">New +</button>
+        <button class="btn pull-right" ng-click="toggleSearch=!toggleSearch" ng-class="{active:toggleSearch}"><i class="icon-search"></i></button>
+      </div>
+
+      <!-- Filter Area -->
+      <div class="well well-small filter-area" ng-show="toggleSearch">
+        <select class="group-select" ng-options="key as getLanguageName(key) for (key, group) in groupedSnippets" ng-model="searchGroup">
+          <option value="">Select Scope...</option>
+        </select>
+        <div class="search-bar">
+          <input type="text" class="search-query" ng-model="search" placeholder="Search">
+          <i class="icon-search"></i>
+        </div>
+      </div>
+
+      <!-- Snippets List -->
+      <ul class="nav nav-list" ng-repeat="(key, group) in groupedSnippets" ng-if="!searchGroup || key === searchGroup">
+        <li class="nav-header">{{getLanguageName(key)}}</li>
+        <li class="snippet-item" ng-repeat="snippet in group | orderBy: 'trigger' | filter: search track by snippet.trigger"
           ng-click="toEdit(snippet)"
           ng-class="{active: originalObj === snippet}">
           <a>
-            <span class="label label-info">{{snippet.trigger}}</span> <small>{{snippet.description}}</small>
+            <span class="label label-info">{{snippet.trigger}}</span>
+            <span class="desc">{{snippet.description}}</span>
             <button class="close" ng-click="remove(snippet)">&times;</button>
           </a>
         </li>
@@ -35,7 +54,7 @@
     <!-- Right -->
     <div class="right-panel">
 
-      <!-- Brief editing area -->
+      <!-- Snippet Editing Area -->
       <div ng-if="editingObj" class="form-horizontal">
         <div class="control-group" ng-class="{error: triggerErr || form.trigger.$error.pattern}" >
           <label class="control-label">Trigger</label>
@@ -54,7 +73,7 @@
         <div class="control-group">
           <label class="control-label">Scope</label>
           <div class="controls">
-            <select ng-options="lang.id as lang.name for lang in definedLanguages" ng-model="editingObj.scope" required></select>
+            <select ng-options="lang.id as lang.name for lang in definedLanguages | orderBy: 'name'" ng-model="editingObj.scope" required></select>
           </div>
         </div>
         <div class="control-group">
@@ -69,7 +88,7 @@
         </div>
       </div>
 
-      <!-- Intro -->
+      <!-- Welcome Page -->
       <div class="intro" ng-hide="editingObj">
         <h1>Brackets Snippets <small>(by edc)</small></h1>
         <p>
