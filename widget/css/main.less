@@ -59,8 +59,25 @@
       display: none;
     }
 
-    &.active .close {
-      color: #FFF;
+    > a {
+      > .label {
+        text-transform: uppercase;
+      }
+    }
+
+    &.active {
+      > a {
+        > .label {
+          background: #F7F7F7;
+          color: #3a87ad !important;
+          text-shadow: none;
+          font-weight: 700;
+        }
+
+        > .close {
+          color: #FFF;
+        }
+      }
     }
 
     &:hover {
