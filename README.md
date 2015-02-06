@@ -155,7 +155,7 @@ Imitate snippets feature of Sublime Text, and bring it to Brackets.
 Please don't hesitate to contribute if you have any good snippets.
 
 # Installation
-Search `Brackets Snippets (by edc)` in Brackets extension market, install it and then reload Brackets.
+Search `Brackets Snippets (by edc)` in Brackets extension market, then install it!
 
 # Todo
 1. ~~Add Snippets Manager UI, allows user to edit snippets~~
