@@ -130,7 +130,7 @@
 
 - trigger: afn
   scope: javascript
-  description: for in
+  description: anonymous function
   text: |
         function (${1:arguments}) {
           ${2}
