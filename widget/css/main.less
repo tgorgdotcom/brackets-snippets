@@ -51,6 +51,26 @@
 
   }
 
+  .snippet-item {
+
+    .close {
+      display: none;
+    }
+
+    &.active .close {
+      color: #FFF;
+    }
+
+    &:hover {
+      .close {
+        display: block;
+      }
+    }
+  }
+
+  /**
+   * rewrite default css
+   */
   .label {
     color: #FFF !important;
     margin: 0 2px 0 1px;
@@ -67,20 +87,7 @@
     }
   }
 
-  .snippet-item {
-
-    .close {
-      display: none;
-    }
-
-    &.active .close {
-      color: #FFF;
-    }
-
-    &:hover {
-      .close {
-        display: block;
-      }
-    }
+  .nav-list>li>a, .nav-list .nav-header {
+    text-shadow: none;
   }
 }
