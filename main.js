@@ -22,10 +22,12 @@ define(function (require, exports, module) {
 
   function activeEditorChangeHandler (bracketsEvent, focusedEditor, lostEditor) {
     if (lostEditor) {
-      $(lostEditor).off("keydown", hinter.keyDownHandler.bind(hinter));
-      $(lostEditor).off("keypress", hinter.keyPressHandler.bind(hinter));
-      $(lostEditor).off("keyup", hinter.keyUpHandler.bind(hinter));
-      $(lostEditor).off("change", hinter.changeHandler.bind(hinter));
+      if(hinter){
+        $(lostEditor).off("keydown", hinter.keyDownHandler.bind(hinter));
+        $(lostEditor).off("keypress", hinter.keyPressHandler.bind(hinter));
+        $(lostEditor).off("keyup", hinter.keyUpHandler.bind(hinter));
+        $(lostEditor).off("change", hinter.changeHandler.bind(hinter));
+      }
     }
 
     if (focusedEditor) {
@@ -43,7 +45,17 @@ define(function (require, exports, module) {
     }
   }
 
+
   AppInit.appReady(function () {
+    // Instantly initialize extension after being installed.
+    //  Note:
+    //    The editor instance would be null at the moment when Brackets starts
+    var editor = EditorManager.getCurrentFullEditor();
+    if(editor){
+      activeEditorChangeHandler(null, editor, null);
+    }
+
     $(EditorManager).on('activeEditorChange', activeEditorChangeHandler);
   });
+
 });
