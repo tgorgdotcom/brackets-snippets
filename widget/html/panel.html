@@ -70,10 +70,10 @@
       </div>
 
       <!-- Intro -->
-      <div class="intro" ng-if="!editingObj">
+      <div class="intro" ng-hide="editingObj">
         <h1>Brackets Snippets <small>(by edc)</small></h1>
         <p>
-          <img src="http://edwardchu.org/assets/images/brackets-snippets-demo.gif" alt="Screen Demo">
+          <img ng-src="{{url('css/images/brackets-snippets-demo.gif')}}" alt="Screen Demo">
         </p>
 
         <p>If any thoughts, please feel free to create an <a href="https://github.com/chuyik/brackets-snippets/issues">issue</a> on Github.</p>
