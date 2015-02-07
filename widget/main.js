@@ -12,8 +12,8 @@ define(function (require, exports, module) {
       MainViewManager  = brackets.getModule('view/MainViewManager'),
       Resizer          = brackets.getModule('utils/Resizer'),
       _                = brackets.getModule("thirdparty/lodash"),
-      LanguageManager  = brackets.getModule("language/LanguageManager");
-
+      LanguageManager  = brackets.getModule("language/LanguageManager"),
+      PreferencesManager = brackets.getModule("preferences/PreferencesManager");
 
   // Load HTML
   var ButtonHTML = require('text!./html/button.html'),
@@ -66,6 +66,7 @@ define(function (require, exports, module) {
         angular: './thirdparty/angular.min',
         app: './js/app',
         snippetsCtrl: './js/snippets.controller',
+        settingsCtrl: './js/settings.controller',
         _: './thirdparty/lodash'
       },
       shim: {
@@ -85,8 +86,15 @@ define(function (require, exports, module) {
         hints: self.hinter.allHints
       }
     })
+    define('settingsData', function() {
+      var defPref = PreferencesManager.getExtensionPrefs(".").base;
+      return {
+        '_insertHintOnTab': defPref.get('insertHintOnTab')
+      }
+    })
 
-    requirejs(['angular', 'app', 'snippetsCtrl'], function(angular) {
+    // Bootstrap angular
+    requirejs(['angular', 'app', 'snippetsCtrl', 'settingsCtrl'], function(angular) {
       $appPanel.ready(function() {
         angular.bootstrap($appPanel, ['snippets-manager']);
       });
@@ -102,18 +110,44 @@ define(function (require, exports, module) {
     $appButton.toggleClass('active');
     if ($appButton.hasClass('active')) {
       // opened
-      $(document).on('snippets-changed', updateHandler.bind(this));
+      $(document).on('snippets-changed', hintsUpdateHandler.bind(this));
+      $(document).on('prefs-changed', prefUpdateHandler.bind(this));
     } else {
       // closed
       MainViewManager.focusActivePane();
       $(document).off('snippets-changed');
+      $(document).off('prefs-changed');
     }
   }
 
-  function updateHandler (ev, snippets) {
+  function hintsUpdateHandler (ev, snippets) {
     this.hinter.updateHints(snippets);
   }
 
+  /**
+   * prefs key prefix:
+   *   default: _               eg: `_insertHintOnTab`
+   *   brackets-snippets: none  eg: `hints`
+   */
+  function prefUpdateHandler (ev, prefs) {
+
+    _.forIn(prefs, function(v, k) {
+
+      var pref;
+      // default prefs
+      if (k.indexOf('_') === 0) {
+        pref = PreferencesManager.getExtensionPrefs(".").base;
+        k = k.slice(1);
+      }
+      // brackets-snippets prefs
+      else {
+        pref = PreferencesManager.getExtensionPrefs("edc.brackets-snippets");
+        k = 'edc.brackets-snippets.' + k;
+      }
+
+      pref.set(k, v);
+    });
+  }
 
   module.exports = HintWidget;
 });

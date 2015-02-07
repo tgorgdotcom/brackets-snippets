@@ -20,6 +20,10 @@ define('snippetsCtrl', ['app', '_', 'snippetsData'], function (app, _, snippetsD
       return _.find($scope.definedLanguages, {id: key}).name;
     }
 
+    $scope.toSetting = function () {
+      $scope.isSetting = !$scope.isSetting;
+    }
+
     $scope.toNew = function () {
       $scope.originalObj = null;
       $scope.editingObj = {};

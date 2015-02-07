@@ -1,15 +1,29 @@
 <form id="edc-brackets-snippets-panel" class="bottom-panel vert-resizable top-resizer" ng-app="snippets-manager" ng-controller="SnippetsCtrl" name="form">
+
+  <!-- Toolbar -->
   <div class="toolbar simple-toolbar-layout clearfix">
+
+    <!-- Title -->
     <div class="title">
       <span>Snippets Manager</span>
     </div>
+
+    <!-- Buttons -->
     <div class="right-area">
       <span class="msg text-success" ng-if="showMsg">
         All snippets are up to date!
       </span>
-      <button class="btn" ng-disabled="form.$invalid" ng-if="editingObj" ng-click="save(editingObj)">Save <small ng-if="form.$invalid">(Fill in required data first)</small></button>
+
+      <button class="btn" ng-if="!editingObj" ng-click="toSetting()" ng-class="{active:isSetting}">
+        Settings
+      </button>
+      <button class="btn" ng-disabled="form.$invalid" ng-if="editingObj" ng-click="save(editingObj)">
+        Save <small ng-if="form.$invalid">(Fill in required data first)</small>
+      </button>
       <button class="btn" ng-if="editingObj" ng-click="cancelEdit()">Cancel</button>
     </div>
+
+    <!-- Close Button -->
     <div class="actions">
       <button class="close">&times;</button>
     </div>
@@ -88,8 +102,25 @@
         </div>
       </div>
 
+      <!-- Settings -->
+      <div class="intro" ng-controller="SettingsCtrl" ng-if="isSetting" ng-hide="editingObj">
+        <form>
+          <div class="form-horizontal">
+            <div class="control-group">
+              <label class="control-label">Insert Snippets On Tab</label>
+              <div class="controls">
+                <input type="checkbox" ng-model="settingsData._insertHintOnTab" ng-disabled="saving">
+                <div class="alert alert-info">
+                  If set, the snippets provided by Brackets itself could be inserted by pressing <span class="label label-info">Tab</span>, but snippets listed on the left won't be affected.
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+
       <!-- Welcome Page -->
-      <div class="intro" ng-hide="editingObj">
+      <div class="intro" ng-hide="editingObj || isSetting">
         <h1>Brackets Snippets <small>(by edc)</small></h1>
         <p>
           <img ng-src="{{url('css/images/brackets-snippets-demo.gif')}}" alt="Screen Demo">
