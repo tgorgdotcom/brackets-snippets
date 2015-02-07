@@ -5,7 +5,7 @@
   "homepage": "https://github.com/chuyik/brackets-snippets",
   "author": "Edward Chu <crazyzyt@gmail.com> (https://github.com/chuyik)",
   "license": "MIT",
-  "version": "1.2.0",
+  "version": "1.2.2",
   "main": "main.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
