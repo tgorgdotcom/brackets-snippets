@@ -1,5 +1,5 @@
 define('snippetsCtrl', ['app', '_', 'snippetsData'], function (app, _, snippetsData) {
-  app.controller('SnippetsCtrl', function ($scope, $document, $window) {
+  app.controller('SnippetsCtrl', function ($scope, $document, $window, $timeout) {
     $scope.editingObj = null;
 
     var snippets = snippetsData.hints;
@@ -128,7 +128,11 @@ define('snippetsCtrl', ['app', '_', 'snippetsData'], function (app, _, snippetsD
     function informChange () {
       snippets = _.chain($scope.groupedSnippets).values().flatten().value();
       $document.trigger('snippets-changed', [snippets]);
-      $scope.showMsg = true;
+
+      // makes user feel the change
+      $timeout(function() {
+        $scope.showMsg = true;
+      }, 200)
     }
   })
 })
