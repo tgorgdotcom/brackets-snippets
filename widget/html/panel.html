@@ -94,9 +94,37 @@
           <label class="control-label">Text</label>
           <div class="controls">
             <textarea rows="3" ng-model="editingObj.text" placeholder="Snippet Text" required></textarea>
-            <div class="alert alert-info" style="font-size: 90%;">
-              <div>Variable format: <span class="label label-info">${NUMBER:STRING}</span>, eg: ${1:obj}</div>
-              <div>Caret format: <span class="label label-info">${NUMBER}</span>, eg: ${2}</div>
+
+            <!-- Instructions -->
+            <div style="font-size: 93.3%">
+              <div class="alert alert-info">
+                <div>Format:</div>
+                <ol>
+                  <li>
+                    <p>Variable: <span class="label label-info">${NUMBER:STRING}</span></p>
+                    <p>eg: ${1:obj} ${2:foo} ${3:BAR}</p>
+                  </li>
+                  <li>
+                    <p>Cursor: <span class="label label-info">${NUMBER}</span></p>
+                    <p>eg: ${1} ${2}</p>
+                  </li>
+                </ol>
+              </div>
+
+              <div class="alert alert-info">
+                <div>Notes:</div>
+                <ol>
+                  <li>
+                    <span class="label label-info">NUMBER</span> means order, which should start with 1.
+                  </li>
+                  <li>
+                    Cursor would be ignored if it has the same order with variables.
+                  </li>
+                  <li>
+                    Could not go through the variables with Tab in HTML if Emmet installed.
+                  </li>
+                </ol>
+              </div>
             </div>
           </div>
         </div>
