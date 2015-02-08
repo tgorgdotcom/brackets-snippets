@@ -13,8 +13,8 @@
   description: Conditional Comment
   text: |
         <!--[if ${1:lt IE 9}]>
-          <link rel=stylesheet href="${2:css/ie.css">}
-        <![endif]-->
+          <link rel=stylesheet href="${2:css/ie.css}">
+        <![endif]-->${3}
 
 - trigger: css
   scope: html
