@@ -1,5 +1,5 @@
 define('snippetsCtrl', ['app', '_', 'userHints', 'languages'], function (app, _, snippets, languages) {
-  app.controller('SnippetsCtrl', function ($scope, $document, $window, $timeout) {
+  app.controller('SnippetsCtrl', function ($scope, $document, $timeout) {
     $scope.editingObj = null;
 
     $scope.groupedSnippets = _.groupBy(snippets, function (snippet) {
@@ -43,18 +43,16 @@ define('snippetsCtrl', ['app', '_', 'userHints', 'languages'], function (app, _,
     }
 
     $scope.remove = function (snippet) {
-      if ($window.confirm('Are you sure to delete "'+ snippet.trigger +'"?')) {
-        var group = $scope.groupedSnippets[snippet.scope];
-        var idx = group.indexOf(snippet);
-        group.splice(idx, 1);
+      var group = $scope.groupedSnippets[snippet.scope];
+      var idx = group.indexOf(snippet);
+      group.splice(idx, 1);
 
-        if (!group.length) {
-          delete $scope.groupedSnippets[snippet.scope];
-        }
-
-        $scope.cancelEdit();
-        $scope.informChange();
+      if (!group.length) {
+        delete $scope.groupedSnippets[snippet.scope];
       }
+
+      $scope.cancelEdit();
+      $scope.informChange();
     }
 
     /**

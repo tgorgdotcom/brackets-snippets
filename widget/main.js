@@ -73,7 +73,8 @@ define(function (require, exports, module) {
         settingsCtrl: './js/settings.controller',
         libraryCtrl:  './js/library.controller',
         foldingDirective:  './js/folding.directive',
-        highlightDirective:  './js/highlight.directive'
+        highlightDirective:  './js/highlight.directive',
+        popConfirmDirective:  './js/pop-confirm.directive'
       },
       shim: {
         'angular': {
@@ -108,10 +109,12 @@ define(function (require, exports, module) {
     })
 
     // Bootstrap angular
-    requirejs(['angular', 'app', 'snippetsCtrl', 'settingsCtrl', 'libraryCtrl', 'foldingDirective', 'highlightDirective'], function(angular) {
-      $appPanel.ready(function() {
-        angular.bootstrap($appPanel, ['snippets-manager']);
-      });
+    requirejs(['angular', 'app', 'snippetsCtrl', 'settingsCtrl', 'libraryCtrl',
+                'foldingDirective', 'highlightDirective', 'popConfirmDirective'],
+      function(angular) {
+        $appPanel.ready(function() {
+          angular.bootstrap($appPanel, ['snippets-manager']);
+        });
     })
   }
 

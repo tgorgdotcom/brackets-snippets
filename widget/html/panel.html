@@ -66,7 +66,7 @@
           <a>
             <span class="label label-info">{{snippet.trigger}}</span>
             <span class="desc">{{snippet.description}}</span>
-            <button class="close" ng-click="remove(snippet)">&times;</button>
+            <button class="close" pop-confirm confirm-cb="remove(snippet)">&times;</button>
           </a>
         </li>
       </ul>

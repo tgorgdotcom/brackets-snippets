@@ -160,6 +160,78 @@
     }
   }
 
+  /**
+   * Confirm bar
+   */
+  .confirm-bar {
+    position: absolute;
+    background: rgba(244, 95, 100, 0.82);
+    top: -25px;
+    right: 0px;
+    padding: 3px 10px;
+    border-radius: 8px 8px 0 0;
+    -webkit-animation: show-up 0.3s;
+
+    > .confirm-msg {
+      color: #FFF;
+      padding: 0 6px 0 0;
+    }
+
+    &.explode {
+      -webkit-animation: explode 0.4s ease-in forwards;
+    }
+
+    &.dive {
+      -webkit-animation: dive 0.3s ease-in forwards;
+    }
+
+    > #confirm-btn, #cancel-btn {
+      margin-top: 2px;
+      transition: 0.3s;
+      cursor: pointer;
+
+      &:hover {
+        opacity: 0.5;
+        -webkit-filter: brightness(0.3);
+      }
+    }
+  }
+
+  @-webkit-keyframes show-up {
+    0% {
+      transform: translate3d(0, 25px, 0);
+      opacity: 0;
+    }
+    100% {
+      transform: translate3d(0, 0, 0);
+      opacity: 1;
+    }
+  }
+
+  @-webkit-keyframes explode {
+    0% {
+      -webkit-filter: blur(0);
+      transform: scale(1);
+    }
+    30%, 50% {
+      -webkit-filter: blur(3px);
+      transform: scale(1.2);
+    }
+    100% {
+      transform: scale(0);
+    }
+  }
+
+  @-webkit-keyframes dive {
+    0% {
+      transform: translate3d(0, 0, 0);
+      opacity: 1;
+    }
+    100% {
+      transform: translate3d(0, 25px, 0);
+      opacity: 0;
+    }
+  }
 
   /**
    * rewrite default css
