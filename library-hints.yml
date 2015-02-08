@@ -4,13 +4,13 @@
 # ---
 - trigger: a
   scope: html
-  description: Anchor tag
+  description: Anchor Tag
   text: |
         <a href="${1}">${2}</a>${3}
 
 - trigger: cond
   scope: html
-  description: Conditional comment
+  description: Conditional Comment
   text: |
         <!--[if ${1:lt IE 9}]>
           <link rel=stylesheet href="${2:css/ie.css">}
@@ -18,7 +18,7 @@
 
 - trigger: css
   scope: html
-  description: Style tag
+  description: Style Tag
   text: |
         <style type="text/css">${1}</style>${2}
 
@@ -46,7 +46,7 @@
 
 - trigger: fig
   scope: html
-  description: Figure tag
+  description: Figure Tag
   text: |
         <figure>
             <img src="${1}" alt="${2}">
@@ -83,7 +83,7 @@
 
 - trigger: img
   scope: html
-  description: Dummy image
+  description: Dummy Image
   text: |
         <img src="http://dummyimage.com/${1:800}x${2:600}/4d494d/686a82.gif&text=${3:placeholder+image}" alt="${3:placeholder+image}">${4}
 
@@ -95,14 +95,14 @@
 
 - trigger: jquery
   scope: html
-  description:
+  description: jQuery Tag
   text: |
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
         <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.2.min.js"><\/script>')</script>
 
 - trigger: lorem
   scope: html
-  description:
+  description: Dummy Text
   text: |
         Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
         incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
@@ -113,7 +113,7 @@
 
 - trigger: meta
   scope: html
-  description:
+  description: Meta Tag
   text: |
         <meta charset=utf-8>
         <meta name=description content="${1}">
@@ -121,7 +121,7 @@
 
 - trigger: shiv
   scope: html
-  description:
+  description: IE Shiv
   text: |
         <!--[if lt IE 9]>
             <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
