@@ -169,7 +169,7 @@
           <thead>
             <tr>
               <th>Trigger</th>
-              <th>Scope</th>
+              <th>Desc</th>
               <th>Text</th>
               <th>Actions</th>
             </tr>
@@ -179,7 +179,7 @@
               <td><span class="label label-info trigger">{{hint.trigger}}</span></td>
               <!-- <td>{{getLanguageName(hint.scope)}}</td> -->
               <td>{{hint.description}}</td>
-              <td><pre class="code" hljs>{{hint.text}}</pre></td>
+              <td><pre class="code" hljs folding>{{hint.text}}</pre></td>
               <td><button class="btn" ng-click="save(hint)">+</button></td>
             </tr>
           </tbody>

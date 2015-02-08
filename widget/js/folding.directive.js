@@ -4,16 +4,16 @@ define('foldingDirective', ['app'], function(app) {
       link: function ($scope, elem) {
 
         $timeout(function() {
-          if (elem.height() > 40) {
+          if (elem.height() > 80) {
             elem.data('oriHeight', elem.height());
-            elem.height(40);
+            elem.height(80);
 
             elem
             .on('mouseover', function () {
               elem.height(elem.data('oriHeight'));
             })
             .on('mouseout', function () {
-              elem.height(40);
+              elem.height(80);
             })
           }
         })
