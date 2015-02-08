@@ -127,9 +127,120 @@
             <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
         <![endif]-->
 
-- trigger: abc
-  scope: ruby
-  description:
+# ---
+# CSS
+# From: https://github.com/joshnh/CSS-Snippets
+# ---
+- trigger: ani
+  scope: css
+  description: Animation
   text: |
-        test
+        -webkit-animation: ${1:name} ${2:duration};
+        animation: ${1:name} ${2:duration};${3}
+
+- trigger: aft
+  scope: css
+  description: After
+  text: |
+        ${1}:after {
+            content: '';
+            ${2}
+        }
+
+- trigger: box
+  scope: css
+  description: Box Shadow
+  text: |
+        box-shadow: ${1:horizontal}px ${2:vertical}px ${3:blur-radius}px ${4:spread-distance}px ${5:#eee};${6}
+
+# From http://codepen.io/HugoGiraudel/pen/LklCv
+- trigger: flex
+  scope: css
+  description: Flexbox
+  text: |
+        .flex-container {
+          display: -webkit-box;
+          display: -moz-box;
+          display: -ms-flexbox;
+          display: -webkit-flex;
+          display: flex;
+
+          -webkit-flex-flow: row wrap;
+          justify-content: space-around;
+        }
+
+        .flex-item {
+          flex: 1;
+          background: tomato;
+          padding: 50px;
+          margin: 5px;
+          color: white;
+          text-align: center;
+        }
+
+- trigger: ff
+  scope: css
+  description: Font Family
+  text: |
+        font-family: Helvetica, Arial, sans-serif;
+
+- trigger: h
+  scope: css
+  description: HSLA
+  text: |
+        hsla(${1:0},${2:0}%,${3:0}%,${4:1})${5}
+
+- trigger: key
+  scope: css
+  description: KeyFrames
+  text: |
+        @-webkit-keyframes ${1:name} {
+            0% {
+              ${2:-webkit-transform: translate3d(0, 0, 0);}
+            }
+            100% {
+              ${3:-webkit-transform: translate3d(0, 0, 0);}
+            }
+        }
+        @keyframes ${1:name} {
+            0% {
+              ${2:transform: translate3d(0, 0, 0);}
+            }
+            100% {
+              ${3:transform: translate3d(0, 0, 0);}
+            }
+        }${4}
+
+- trigger: med
+  scope: css
+  description: Media
+  text: |
+        @media (min-width: ${1}) {
+          ${2}
+        }${3}
+
+- trigger: r
+  scope: css
+  description: RGBA
+  text: |
+        rgba(${1:0},${2:0},${3:0},${4:1})${5}
+
+- trigger: tex
+  scope: css
+  description: Text Shadow
+  text: |
+        text-shadow: ${1:horizontal}px ${2:vertical}px ${3:blur-radius}px ${4:#eee};${5}
+
+- trigger: upp
+  scope: css
+  description: Upper Case
+  text: |
+        text-transform: uppercase;
+
+- trigger: wra
+  scope: css
+  description: Word Wrap
+  text: |
+        overflow-wrap: break-word;
+        word-wrap: break-word;
 
