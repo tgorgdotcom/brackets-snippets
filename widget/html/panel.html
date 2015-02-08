@@ -92,6 +92,9 @@
           <label class="control-label">Scope</label>
           <div class="controls">
             <select ng-options="lang.id as lang.name for lang in languages | orderBy: 'name'" ng-model="editingObj.scope" required></select>
+            <div class="btn btn-mini" ng-if="lastScope && !originalObj" style="margin-top:5px;" ng-click="useLastScope()">
+              Use last scope: {{getLanguageName(lastScope)}}
+            </div>
           </div>
         </div>
         <div class="control-group">

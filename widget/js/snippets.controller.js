@@ -122,6 +122,8 @@ define('snippetsCtrl', ['app', '_', 'userHints', 'languages'], function (app, _,
       }
 
       $scope.toEdit(editingObj);
+      // remember last scope
+      $scope.lastScope = editingObj.scope;
       $scope.informChange();
     }
 
@@ -133,6 +135,10 @@ define('snippetsCtrl', ['app', '_', 'userHints', 'languages'], function (app, _,
       $timeout(function() {
         $scope.showMsg = true;
       }, 200)
+    }
+
+    $scope.useLastScope = function () {
+      $scope.editingObj.scope = $scope.lastScope;
     }
   })
 })
