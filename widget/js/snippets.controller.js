@@ -86,7 +86,13 @@ define('snippetsCtrl', ['app', '_', 'userHints', 'languages'], function (app, _,
       return false;
     }
 
-    $scope.save = function (editingObj) {
+    /**
+     * Save current editing snippet and apply it immediately
+     *
+     * @param  {Object} editingObj     Editing snippet object
+     * @param  {Boolean} toCreateFlag  To bulk create view after save rather than edit
+     */
+    $scope.save = function (editingObj, toCreateFlag) {
       $scope.showMsg = false;
       if (!$scope.validate(editingObj))
         return;
@@ -121,7 +127,12 @@ define('snippetsCtrl', ['app', '_', 'userHints', 'languages'], function (app, _,
         group.push(editingObj);
       }
 
-      $scope.toEdit(editingObj);
+      if (toCreateFlag) {
+        $scope.toNew();
+      } else {
+        $scope.toEdit(editingObj);
+      }
+
       // remember last scope
       $scope.lastScope = editingObj.scope;
       $scope.informChange();

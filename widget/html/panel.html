@@ -23,6 +23,9 @@
       <button class="btn" ng-disabled="form.$invalid" ng-if="editingObj" ng-click="save(editingObj)">
         Save <small ng-if="form.$invalid">(Fill in required data first)</small>
       </button>
+      <button class="btn" ng-if="form.$valid && !originalObj && editingObj" ng-click="save(editingObj,true)">
+        Save and Create
+      </button>
       <button class="btn" ng-if="editingObj" ng-click="cancelEdit()">Cancel</button>
     </div>
 
