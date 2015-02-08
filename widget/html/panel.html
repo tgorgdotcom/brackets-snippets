@@ -156,7 +156,7 @@
             <tr ng-repeat="hint in libraryHints | filter: searchGroup track by hint.trigger">
               <td><span class="label label-info trigger">{{hint.trigger}}</span></td>
               <td>{{getLanguageName(hint.scope)}}</td>
-              <td><pre class="code" folding>{{hint.text}}</pre></td>
+              <td><pre class="code" hljs>{{hint.text}}</pre></td>
               <td><button class="btn" ng-click="save(hint)">Add</button></td>
             </tr>
           </tbody>

@@ -22,6 +22,7 @@ define(function (require, exports, module) {
 
   // Load CSS
   ExtensionUtils.loadStyleSheet(module, 'thirdparty/bootstrap-responsive.min.css');
+  ExtensionUtils.loadStyleSheet(module, 'thirdparty/highlight/github.css');
   ExtensionUtils.loadStyleSheet(module, 'css/main.less');
 
   window.name = "NG_DEFER_BOOTSTRAP!";
@@ -64,12 +65,15 @@ define(function (require, exports, module) {
     requirejs.config({
       baseUrl: require.toUrl('.'),
       paths: {
+        highlight:  './thirdparty/highlight/highlight.pack',
+        _: './thirdparty/lodash',
         angular: './thirdparty/angular.min',
         app: './js/app',
         snippetsCtrl: './js/snippets.controller',
         settingsCtrl: './js/settings.controller',
         libraryCtrl:  './js/library.controller',
-        _: './thirdparty/lodash'
+        foldingDirective:  './js/folding.directive',
+        highlightDirective:  './js/highlight.directive'
       },
       shim: {
         'angular': {
@@ -104,7 +108,7 @@ define(function (require, exports, module) {
     })
 
     // Bootstrap angular
-    requirejs(['angular', 'app', 'snippetsCtrl', 'settingsCtrl', 'libraryCtrl'], function(angular) {
+    requirejs(['angular', 'app', 'snippetsCtrl', 'settingsCtrl', 'libraryCtrl', 'foldingDirective', 'highlightDirective'], function(angular) {
       $appPanel.ready(function() {
         angular.bootstrap($appPanel, ['snippets-manager']);
       });
