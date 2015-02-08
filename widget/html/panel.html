@@ -125,7 +125,7 @@
                     Cursor would be ignored if it has the same order with variables.
                   </li>
                   <li>
-                    Could not go through the variables with Tab in HTML if <span class="label label-info">Emmet</span> installed.
+                    Could not go through the variables with Tab in HTML/CSS if <span class="label label-info">Emmet</span> installed.
                   </li>
                 </ol>
               </div>
@@ -138,11 +138,15 @@
       <div class="intro" ng-controller="LibraryCtrl" ng-if="isLibrary" ng-hide="editingObj">
         <div class="alert alert-info">
           <span>Notes:</span>
-          Could not go through the variables with Tab in HTML if <span class="label label-info">Emmet</span> installed.
+          Could not go through the variables with Tab in HTML/CSS if <span class="label label-info">Emmet</span> installed.
         </div>
-        <select class="group-select" ng-options="lang.id as lang.name for lang in languages" ng-model="searchGroup">
+        <!-- <select class="group-select" ng-options="lang.id as lang.name for lang in languages" ng-model="searchGroup">
           <option value="">Select Scope...</option>
-        </select>
+        </select> -->
+        <div class="btn-group">
+          <button class="btn" ng-repeat="lang in languages track by lang.id" ng-click="toggleGroup(lang.id)" ng-class="{active:searchGroup===lang.id}">{{lang.name}}</button>
+        </div>
+
         <table class="table table-striped table-hover table-bordered">
           <thead>
             <tr>
@@ -153,9 +157,10 @@
             </tr>
           </thead>
           <tbody>
-            <tr ng-repeat="hint in libraryHints | filter: searchGroup track by hint.trigger">
+            <tr ng-repeat="hint in libraryHints | filter:{scope:searchGroup} track by hint.trigger">
               <td><span class="label label-info trigger">{{hint.trigger}}</span></td>
-              <td>{{getLanguageName(hint.scope)}}</td>
+              <!-- <td>{{getLanguageName(hint.scope)}}</td> -->
+              <td>{{hint.description}}</td>
               <td><pre class="code" hljs>{{hint.text}}</pre></td>
               <td><button class="btn" ng-click="save(hint)">Add</button></td>
             </tr>

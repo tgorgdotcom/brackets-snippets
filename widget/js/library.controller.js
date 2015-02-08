@@ -10,6 +10,15 @@ define('libraryCtrl', ['app', '_', 'libraryHints', 'languages'], function (app, 
                             return _.find(languages, {id: scope})
                           }).value();
 
+    // Choose the first group by default
+    $scope.searchGroup = $scope.languages[0].id;
+
+    $scope.toggleGroup = function (langId) {
+      // Not allowed to see all hints at one time, for better performance
+      // $scope.searchGroup = $scope.searchGroup === langId ? '' : langId;
+      $scope.searchGroup = langId;
+    }
+
     $scope.save = function (snippet) {
       var snippetCopy = angular.copy(snippet);
 
