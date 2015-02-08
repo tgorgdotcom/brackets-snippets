@@ -7,12 +7,16 @@ Imitate snippets feature of Sublime Text, and bring it to Brackets.
 # Snippets Manager
 ![snippets-manager.png](http://edwardchu.org/assets/images/snippets-manager@2x.png "Snippets Manager Screenshot")
 
+# Snippets Library
+![snippets-library.png](http://edwardchu.org/assets/images/snippets-library@2x.png "Snippets Library Screenshot")
+
 # Features
 1. Insert snippets by pressing `Tab` key
 2. Multiple variables support
 3. Select next variables by pressing `Tab` key
 4. Edit multiple variables one time
 5. New (2015-02-04): Add and edit snippets in `Snippets Manager`
+5. New (2015-02-08): Add `Snippets Library`
 
 # Default snippets
 ### Javascript Snippets
@@ -158,9 +162,11 @@ Please don't hesitate to contribute if you have any good snippets.
 Search `Brackets Snippets (by edc)` in Brackets extension market, then install it!
 
 # Todo
-1. ~~Add Snippets Manager UI, allows user to edit snippets~~
-2. Allow import/export snippets (yaml format)
-3. Show description on hints list
+1. Allow import/export snippets (yaml format)
+2. Show description on hints list
+3. Allow `Alt(Option)+Tab` to focus previous variables
 
 # Credits
-[JavaScript & NodeJS Snippets for Sublime Text 2/3](https://github.com/zenorocha/sublime-javascript-snippets)
+1. [JavaScript & NodeJS Snippets for Sublime Text 2/3](https://github.com/zenorocha/sublime-javascript-snippets)
+2. [HTML snippets for Sublime Text](https://github.com/joshnh/HTML-Snippets)
+3. [CSS snippets for Sublime Text](https://github.com/joshnh/CSS-Snippets)
