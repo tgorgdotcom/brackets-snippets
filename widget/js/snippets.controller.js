@@ -1,39 +1,39 @@
-define('snippetsCtrl', ['app', '_', 'snippetsData'], function (app, _, snippetsData) {
+define('snippetsCtrl', ['app', '_', 'userHints', 'languages'], function (app, _, snippets, languages) {
   app.controller('SnippetsCtrl', function ($scope, $document, $window, $timeout) {
     $scope.editingObj = null;
-
-    var snippets = snippetsData.hints;
-    var languages = snippetsData.languages;
 
     $scope.groupedSnippets = _.groupBy(snippets, function (snippet) {
       return snippet.scope;
     })
 
-    $scope.definedLanguages = _.map(languages, function (language, key) {
-      return {
-        id: language.getId(),
-        name: language.getName()
-      }
-    });
+    $scope.languages = languages;
 
     $scope.getLanguageName = function (key) {
-      return _.find($scope.definedLanguages, {id: key}).name;
+      return _.find($scope.languages, {id: key}).name;
+    }
+
+    $scope.toLibrary = function () {
+      $scope.isLibrary = !$scope.isLibrary;
+      $scope.isSetting = false;
     }
 
     $scope.toSetting = function () {
       $scope.isSetting = !$scope.isSetting;
+      $scope.isLibrary = false;
     }
 
     $scope.toNew = function () {
       $scope.originalObj = null;
       $scope.editingObj = {};
       $scope.showMsg = false;
+      $scope.triggerErr = false;
     }
 
     $scope.toEdit = function (snippet) {
       $scope.originalObj = snippet;
       $scope.editingObj = angular.copy(snippet);
       $scope.showMsg = false;
+      $scope.triggerErr = false;
     }
 
     $scope.cancelEdit = function () {
@@ -53,7 +53,7 @@ define('snippetsCtrl', ['app', '_', 'snippetsData'], function (app, _, snippetsD
         }
 
         $scope.cancelEdit();
-        informChange();
+        $scope.informChange();
       }
     }
 
@@ -76,7 +76,7 @@ define('snippetsCtrl', ['app', '_', 'snippetsData'], function (app, _, snippetsD
 
       // Find if trigger exists in new scope
       var idx = _.findIndex(group, {
-        trigger: editingObj.trigger
+        trigger: editingObj.trigger.toLowerCase()
       });
 
       if (idx === -1)
@@ -122,10 +122,10 @@ define('snippetsCtrl', ['app', '_', 'snippetsData'], function (app, _, snippetsD
       }
 
       $scope.toEdit(editingObj);
-      informChange();
+      $scope.informChange();
     }
 
-    function informChange () {
+    $scope.informChange = function () {
       snippets = _.chain($scope.groupedSnippets).values().flatten().value();
       $document.trigger('snippets-changed', [snippets]);
 

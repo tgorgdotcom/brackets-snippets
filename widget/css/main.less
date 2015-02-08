@@ -107,6 +107,17 @@
     }
   }
 
+  .trigger {
+    text-transform: uppercase;
+  }
+
+  .code {
+    overflow: hidden;
+    transition: height 0.3s ease-out;
+    font-size: 86.6%;
+    line-height: 16px;
+  }
+
   /**
    * filters
    */
@@ -179,5 +190,10 @@
 
   .nav-list>li>a, .nav-list .nav-header {
     text-shadow: none;
+  }
+
+  .btn.active:not([disabled]) {
+    color: #2D6EB6;
+    text-shadow: 1px 4px 6px #DEF, 0 0 0 #000, 1px 4px 6px #DEF;
   }
 }

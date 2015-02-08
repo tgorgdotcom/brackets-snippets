@@ -13,7 +13,8 @@ define(function (require, exports, module) {
       Resizer          = brackets.getModule('utils/Resizer'),
       _                = brackets.getModule("thirdparty/lodash"),
       LanguageManager  = brackets.getModule("language/LanguageManager"),
-      PreferencesManager = brackets.getModule("preferences/PreferencesManager");
+      PreferencesManager = brackets.getModule("preferences/PreferencesManager"),
+      HintManager      = require("../lib/HintManager");
 
   // Load HTML
   var ButtonHTML = require('text!./html/button.html'),
@@ -67,6 +68,7 @@ define(function (require, exports, module) {
         app: './js/app',
         snippetsCtrl: './js/snippets.controller',
         settingsCtrl: './js/settings.controller',
+        libraryCtrl:  './js/library.controller',
         _: './thirdparty/lodash'
       },
       shim: {
@@ -80,11 +82,19 @@ define(function (require, exports, module) {
     $('#' + CONST.PANEL_ID + ' .close').on('click', togglePanelHandler.bind(this));
 
     // Prepare Data
-    define('snippetsData', function() {
-      return {
-        languages: LanguageManager.getLanguages(),
-        hints: self.hinter.allHints
-      }
+    define('languages', function() {
+      return  _.map(LanguageManager.getLanguages(), function (language) {
+        return {
+          id: language.getId(),
+          name: language.getName()
+        }
+      })
+    })
+    define('userHints', function() {
+      return self.hinter.allHints
+    })
+    define('libraryHints', function() {
+      return HintManager.loadLibraryHints()
     })
     define('settingsData', function() {
       var defPref = PreferencesManager.getExtensionPrefs(".").base;
@@ -94,7 +104,7 @@ define(function (require, exports, module) {
     })
 
     // Bootstrap angular
-    requirejs(['angular', 'app', 'snippetsCtrl', 'settingsCtrl'], function(angular) {
+    requirejs(['angular', 'app', 'snippetsCtrl', 'settingsCtrl', 'libraryCtrl'], function(angular) {
       $appPanel.ready(function() {
         angular.bootstrap($appPanel, ['snippets-manager']);
       });

@@ -14,6 +14,9 @@
         All snippets are up to date!
       </span>
 
+      <button class="btn" ng-if="!editingObj" ng-click="toLibrary()" ng-class="{active:isLibrary}">
+        Library
+      </button>
       <button class="btn" ng-if="!editingObj" ng-click="toSetting()" ng-class="{active:isSetting}">
         Settings
       </button>
@@ -30,6 +33,7 @@
   </div>
 
   <div class="resizable-content">
+
     <!-- Left -->
     <div class="left-panel">
 
@@ -87,7 +91,7 @@
         <div class="control-group">
           <label class="control-label">Scope</label>
           <div class="controls">
-            <select ng-options="lang.id as lang.name for lang in definedLanguages | orderBy: 'name'" ng-model="editingObj.scope" required></select>
+            <select ng-options="lang.id as lang.name for lang in languages | orderBy: 'name'" ng-model="editingObj.scope" required></select>
           </div>
         </div>
         <div class="control-group">
@@ -121,13 +125,42 @@
                     Cursor would be ignored if it has the same order with variables.
                   </li>
                   <li>
-                    Could not go through the variables with Tab in HTML if Emmet installed.
+                    Could not go through the variables with Tab in HTML if <span class="label label-info">Emmet</span> installed.
                   </li>
                 </ol>
               </div>
             </div>
           </div>
         </div>
+      </div>
+
+      <!-- Library -->
+      <div class="intro" ng-controller="LibraryCtrl" ng-if="isLibrary" ng-hide="editingObj">
+        <div class="alert alert-info">
+          <span>Notes:</span>
+          Could not go through the variables with Tab in HTML if <span class="label label-info">Emmet</span> installed.
+        </div>
+        <select class="group-select" ng-options="lang.id as lang.name for lang in languages" ng-model="searchGroup">
+          <option value="">Select Scope...</option>
+        </select>
+        <table class="table table-striped table-hover table-bordered">
+          <thead>
+            <tr>
+              <th>Trigger</th>
+              <th>Scope</th>
+              <th>Text</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="hint in libraryHints | filter: searchGroup track by hint.trigger">
+              <td><span class="label label-info trigger">{{hint.trigger}}</span></td>
+              <td>{{getLanguageName(hint.scope)}}</td>
+              <td><pre class="code" folding>{{hint.text}}</pre></td>
+              <td><button class="btn" ng-click="save(hint)">Add</button></td>
+            </tr>
+          </tbody>
+        </table>
       </div>
 
       <!-- Settings -->
@@ -148,7 +181,7 @@
       </div>
 
       <!-- Welcome Page -->
-      <div class="intro" ng-hide="editingObj || isSetting">
+      <div class="intro" ng-hide="editingObj || isSetting || isLibrary">
         <h1>Brackets Snippets <small>(by edc)</small></h1>
         <p>
           <img ng-src="{{url('css/images/brackets-snippets-demo.gif')}}" alt="Screen Demo">
