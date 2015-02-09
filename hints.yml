@@ -134,7 +134,7 @@
   text: |
         function (${1:arguments}) {
           ${2}
-        };${3}
+        }${3}
 
 - trigger: pr
   scope: javascript
