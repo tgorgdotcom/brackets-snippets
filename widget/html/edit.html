@@ -2,9 +2,9 @@
   <div class="control-group" ng-class="{error: triggerErr || form.trigger.$error.pattern}">
     <label class="control-label">Trigger</label>
     <div class="controls">
-      <input type="text" name="trigger" ng-model="editingObj.trigger" placeholder="Trigger Key" required ng-pattern="/^[^\s]+$/">
+      <input type="text" name="trigger" ng-model="editingObj.trigger" placeholder="Trigger Key" required ng-pattern="triggerPattern">
       <div class="help-block" ng-show="triggerErr">Trigger is conflicted in current scope, please choose another one.</div>
-      <div class="help-block" ng-show="form.trigger.$error.pattern">White space is permitted.</div>
+      <div class="help-block" ng-show="form.trigger.$error.pattern">White spaces and punctuations(eg: ,./) are permitted.</div>
     </div>
   </div>
   <div class="control-group">

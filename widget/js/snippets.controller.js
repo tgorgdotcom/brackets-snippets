@@ -6,6 +6,8 @@ define('snippetsCtrl', ['app', '_', 'userHints', 'languages'], function (app, _,
       return snippet.scope;
     })
 
+    $scope.triggerPattern = /^[^\s,\./"';:{}\[\]]+$/; //"
+
     $scope.languages = languages;
 
     $scope.getLanguageName = function (key) {
