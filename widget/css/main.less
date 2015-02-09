@@ -271,8 +271,30 @@
     text-shadow: none;
   }
 
-  .btn.active:not([disabled]) {
-    color: #2D6EB6;
-    text-shadow: 1px 4px 6px #DEF, 0 0 0 #000, 1px 4px 6px #DEF;
+  .btn {
+    cursor: pointer;
+    transition: 0.2s;
+
+    &:active {
+      -webkit-animation: dive 1s;
+    }
+
+    &.success {
+      background: #C0FFE0;
+      -webkit-animation: blink 1.5s ease-out forwards;
+    }
+
+    &.active:not([disabled]) {
+      color: #2D6EB6;
+      text-shadow: 1px 4px 6px #DEF, 0 0 0 #000, 1px 4px 6px #DEF;
+    }
   }
+
+  @-webkit-keyframes blink {
+    0%, 60% {background: #FFF;}
+    50% {background: #CEFFE6;}
+    20% {background: #1DC598; color: #fff; font-weight: 700}
+    to {background: #E5E9E9;}
+  }
+
 }
