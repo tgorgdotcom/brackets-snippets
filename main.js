@@ -20,13 +20,14 @@ define(function (require, exports, module) {
 
   var hinter, hintWidget;
 
+  var handlers;
   function activeEditorChangeHandler (bracketsEvent, focusedEditor, lostEditor) {
     if (lostEditor) {
       if(hinter){
-        $(lostEditor).off("keydown", hinter.keyDownHandler.bind(hinter));
-        $(lostEditor).off("keypress", hinter.keyPressHandler.bind(hinter));
-        $(lostEditor).off("keyup", hinter.keyUpHandler.bind(hinter));
-        $(lostEditor).off("change", hinter.changeHandler.bind(hinter));
+        $(lostEditor).off("keydown", handlers.keydown);
+        $(lostEditor).off("keypress", handlers.keypress);
+        $(lostEditor).off("keyup", handlers.keyup);
+        $(lostEditor).off("change", handlers.change);
       }
     }
 
@@ -38,10 +39,18 @@ define(function (require, exports, module) {
       } else {
         hinter.reinit(focusedEditor);
       }
-      $(focusedEditor).on("keydown", hinter.keyDownHandler.bind(hinter));
-      $(focusedEditor).on("keypress", hinter.keyPressHandler.bind(hinter));
-      $(focusedEditor).on("keyup", hinter.keyUpHandler.bind(hinter));
-      $(focusedEditor).on("change", hinter.changeHandler.bind(hinter));
+
+      handlers = {
+        keydown: hinter.keyDownHandler.bind(hinter),
+        keypress: hinter.keyPressHandler.bind(hinter),
+        keyup: hinter.keyUpHandler.bind(hinter),
+        change: hinter.changeHandler.bind(hinter)
+      }
+
+      $(focusedEditor).on("keydown", handlers.keydown);
+      $(focusedEditor).on("keypress", handlers.keypress);
+      $(focusedEditor).on("keyup", handlers.keyup);
+      $(focusedEditor).on("change", handlers.change);
     }
   }
 
