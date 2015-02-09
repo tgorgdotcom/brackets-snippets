@@ -27,21 +27,18 @@ define('snippetsCtrl', ['app', '_', 'userHints', 'languages'], function (app, _,
     $scope.toNew = function () {
       $scope.originalObj = null;
       $scope.editingObj = {};
-      $scope.showMsg = false;
       $scope.triggerErr = false;
     }
 
     $scope.toEdit = function (snippet) {
       $scope.originalObj = snippet;
       $scope.editingObj = angular.copy(snippet);
-      $scope.showMsg = false;
       $scope.triggerErr = false;
     }
 
     $scope.cancelEdit = function () {
       $scope.originalObj = null;
       $scope.editingObj = null;
-      $scope.showMsg = false;
     }
 
     $scope.remove = function (snippet) {
@@ -93,7 +90,6 @@ define('snippetsCtrl', ['app', '_', 'userHints', 'languages'], function (app, _,
      * @param  {Boolean} toCreateFlag  To bulk create view after save rather than edit
      */
     $scope.save = function (editingObj, toCreateFlag) {
-      $scope.showMsg = false;
       if (!$scope.validate(editingObj))
         return;
 
@@ -139,6 +135,8 @@ define('snippetsCtrl', ['app', '_', 'userHints', 'languages'], function (app, _,
     }
 
     $scope.informChange = function () {
+      $scope.showMsg = false;
+
       snippets = _.chain($scope.groupedSnippets).values().flatten().value();
       $document.trigger('snippets-changed', [snippets]);
 
