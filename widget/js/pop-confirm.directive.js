@@ -1,7 +1,7 @@
 define('popConfirmDirective', ['app'], function(app) {
   app.directive('popConfirm', function ($timeout) {
     var $lastDiv;
-    var html = '<div class="confirm-bar"><span class="confirm-msg">Sure to delete? </span><i id="confirm-btn" class="icon-ok-circle icon-white"></i> <i id="cancel-btn" class="icon-remove-circle icon-white"></i></div>';
+    var html = '<div class="confirm-bar"><span id="confirm-btn">Confirm</span> </div>';
 
     $('#edc-brackets-snippets-panel').on('click', function (ev) {
       if (!$(ev.target).is('[pop-confirm],#confirm-btn,#cancel-btn')) {
@@ -40,14 +40,14 @@ define('popConfirmDirective', ['app'], function(app) {
             }, 400)
           });
 
-          $div.find('#cancel-btn').on('click', function () {
-            $div.addClass('dive');
-            $timeout(function() {
-              $scope.cancelCb();
-              $lastDiv.remove();
-              $div.remove();
-            }, 300)
-          });
+          // $div.find('#cancel-btn').on('click', function () {
+          //   $div.addClass('dive');
+          //   $timeout(function() {
+          //     $scope.cancelCb();
+          //     $lastDiv.remove();
+          //     $div.remove();
+          //   }, 300)
+          // });
         })
       }
     }
