@@ -163,8 +163,7 @@ Search `Brackets Snippets (by edc)` in Brackets extension market, then install i
 
 # Todo
 1. Allow import/export snippets (yaml format)
-2. Show description on hints list
-3. Allow `Alt(Option)+Tab` to focus previous variables
+2. Allow `Alt(Option)+Tab` to focus previous variables
 
 # Credits
 1. [JavaScript & NodeJS Snippets for Sublime Text 2/3](https://github.com/zenorocha/sublime-javascript-snippets)
