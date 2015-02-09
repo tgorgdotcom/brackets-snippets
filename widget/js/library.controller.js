@@ -3,6 +3,8 @@ define('libraryCtrl', ['app', '_', 'libraryHints', 'languages'], function (app, 
 
     $scope.libraryHints = libraryHints;
 
+    $scope.toggleSearch = false;
+
     $scope.languages =  _.chain(libraryHints)
                           .pluck('scope')
                           .uniq()
