@@ -1,30 +1,39 @@
-Imitate snippets feature of Sublime Text, and bring it to Brackets.
+Imitate snippets feature of Sublime Text, and bring it to [Brackets](http://brackets.io/).
 
 # Screen demo
 ![brackets-snippets-demo.gif](http://edwardchu.org/assets/images/brackets-snippets-demo.gif "Demo gif of the extension")
 > Gif size ~500kb, please wait until loaded
+
+# Features
+1. Insert snippets by pressing `Tab` key
+2. Select next variables or place cursor by pressing `Tab` key
+3. Edit multiple variables at one time
+4. Fully customize your own snippets in `Snippets Manager` (See below)
+5. Hang around `Snippets Library` and find some other awesome snippets! (See below)
 
 # Snippets Manager
 ![snippets-manager.png](http://edwardchu.org/assets/images/snippets-manager@2x.png "Snippets Manager Screenshot")
 
 # Snippets Library
 ![snippets-library.png](http://edwardchu.org/assets/images/snippets-library@2x.png "Snippets Library Screenshot")
+> The library is currently maintained by myself, you can contribute by simply creating an issue, or
+> 
+> 1. Fork this project;
+> 2. Edit [library-hints.yml](https://github.com/chuyik/brackets-snippets/blob/master/library-hints.yml), then commit changes and push it to your repository;
+> 3. Perform a [pull request](https://github.com/chuyik/brackets-snippets/pulls).
 
-# Features
-1. Insert snippets by pressing `Tab` key
-2. Multiple variables support
-3. Select next variables by pressing `Tab` key
-4. Edit multiple variables one time
-5. New (2015-02-04): Add and edit snippets in `Snippets Manager`
-5. New (2015-02-08): Add `Snippets Library`
-
+# Snippet Format
+Basically follows Sublime Text, you would see help when creating an snippet.
+Or follows the examples in `Snippets Library`.
+> Environment variables would be added in future, see Todo#1.
 
 # Installation
-Search `Brackets Snippets (by edc)` in Brackets extension market, then install it!
+Search `Brackets Snippets (by edc)` in Brackets Extension Manager, and install it.
 
 # Todo
-1. Allow import/export snippets (yaml format)
-2. Allow `Alt(Option)+Tab` to focus previous variables
+1. Add [Environment Variables](http://docs.sublimetext.info/en/latest/extensibility/snippets.html#environment-variables) support like what Sublime Text provides
+2. Allow import/export snippets (yaml format)
+3. Allow `Alt(Option)+Tab` to focus previous variables
 
 # Credits
 1. [JavaScript & NodeJS Snippets for Sublime Text 2/3](https://github.com/zenorocha/sublime-javascript-snippets)
