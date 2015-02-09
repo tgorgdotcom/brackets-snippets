@@ -134,6 +134,7 @@ define('snippetsCtrl', ['app', '_', 'userHints', 'languages'], function (app, _,
       $scope.informChange();
     }
 
+    var timeoutObj;
     $scope.informChange = function () {
       $scope.showMsg = false;
 
@@ -143,6 +144,14 @@ define('snippetsCtrl', ['app', '_', 'userHints', 'languages'], function (app, _,
       // makes user feel the change
       $timeout(function() {
         $scope.showMsg = true;
+
+        if (timeoutObj) {
+          $timeout.cancel(timeoutObj);
+        }
+
+        timeoutObj = $timeout(function() {
+          $scope.showMsg = false;
+        }, 3000)
       }, 200)
     }
 
