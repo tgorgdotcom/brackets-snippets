@@ -1,230 +1,46 @@
-<form id="edc-brackets-snippets-panel" class="bottom-panel vert-resizable top-resizer" ng-app="snippets-manager" ng-controller="SnippetsCtrl" name="form">
+<form id="edc-brackets-snippets-panel" name="form"
+  class="bottom-panel vert-resizable top-resizer"
+  ng-app="snippets-manager" ng-controller="SnippetsCtrl">
 
   <!-- Toolbar -->
-  <div class="toolbar simple-toolbar-layout clearfix">
-
-    <!-- Title -->
-    <div class="title">
-      <span>Snippets Manager</span>
-    </div>
-
-    <!-- Buttons -->
-    <div class="right-area">
-      <span class="msg text-success" ng-if="showMsg">
-        All snippets are up to date!
-      </span>
-
-      <button class="btn" ng-if="!editingObj" ng-click="toLibrary()" ng-class="{active:isLibrary}">
-        Library
-      </button>
-      <button class="btn" ng-if="!editingObj" ng-click="toSetting()" ng-class="{active:isSetting}">
-        Settings
-      </button>
-      <button class="btn" ng-disabled="form.$invalid" ng-if="editingObj" ng-click="save(editingObj)">
-        Save <small ng-if="form.$invalid">(Fill in required data first)</small>
-      </button>
-      <button class="btn" ng-if="form.$valid && !originalObj && editingObj" ng-click="save(editingObj,true)">
-        Save and Create
-      </button>
-      <button class="btn" ng-if="editingObj" ng-click="cancelEdit()">Cancel</button>
-    </div>
-
-    <!-- Close Button -->
-    <div class="actions">
-      <button class="close">&times;</button>
-    </div>
+  <div class="toolbar simple-toolbar-layout clearfix"
+    ng-include="url('html/toolbar.html')">
   </div>
 
   <div class="resizable-content">
 
     <!-- Left -->
-    <div class="left-panel">
-
-      <!-- Buttons -->
-      <div class="control-btns">
-        <button class="btn" ng-click="toNew()">New +</button>
-        <button class="btn pull-right" ng-click="toggleSearch=!toggleSearch" ng-class="{active:toggleSearch}"><i class="icon-search"></i></button>
-      </div>
-
-      <!-- Filter Area -->
-      <div class="well well-small filter-area" ng-show="toggleSearch">
-        <select class="group-select" ng-options="key as getLanguageName(key) for (key, group) in groupedSnippets" ng-model="searchGroup">
-          <option value="">Select Scope...</option>
-        </select>
-        <div class="search-bar">
-          <input type="text" class="search-query" ng-model="search" placeholder="Search">
-          <i class="icon-search"></i>
-        </div>
-      </div>
-
-      <!-- Snippets List -->
-      <ul class="nav nav-list" ng-repeat="(key, group) in groupedSnippets" ng-if="!searchGroup || key === searchGroup">
-        <li class="nav-header">{{getLanguageName(key)}}</li>
-        <li class="snippet-item" ng-repeat="snippet in group | orderBy: 'trigger' | filter: search track by snippet.trigger"
-          ng-click="toEdit(snippet)"
-          ng-class="{active: originalObj === snippet}">
-          <a>
-            <span class="label label-info">{{snippet.trigger}}</span>
-            <span class="desc">{{snippet.description}}</span>
-            <button class="close" pop-confirm confirm-cb="remove(snippet)">&times;</button>
-          </a>
-        </li>
-      </ul>
-    </div>
+    <div class="left-panel" ng-include="url('html/list.html')"></div>
 
     <!-- Right -->
     <div class="right-panel">
 
-      <!-- Snippet Editing Area -->
-      <div ng-if="editingObj" class="form-horizontal">
-        <div class="control-group" ng-class="{error: triggerErr || form.trigger.$error.pattern}" >
-          <label class="control-label">Trigger</label>
-          <div class="controls">
-            <input type="text" name="trigger" ng-model="editingObj.trigger" placeholder="Trigger Key" required ng-pattern="/^[^\s]+$/">
-            <div class="help-block" ng-show="triggerErr">Trigger is conflicted in current scope, please choose another one.</div>
-            <div class="help-block" ng-show="form.trigger.$error.pattern">White space is permitted.</div>
-          </div>
-        </div>
-        <div class="control-group">
-          <label class="control-label">Description <small>(Optional)</small></label>
-          <div class="controls">
-            <input type="text" ng-model="editingObj.description" placeholder="Description (Appeared on list)">
-          </div>
-        </div>
-        <div class="control-group">
-          <label class="control-label">Scope</label>
-          <div class="controls">
-            <select ng-options="lang.id as lang.name for lang in languages | orderBy: 'name'" ng-model="editingObj.scope" required></select>
-            <div class="btn btn-mini" ng-if="lastScope && !originalObj" style="margin-top:5px;" ng-click="useLastScope()">
-              Use last scope: {{getLanguageName(lastScope)}}
-            </div>
-          </div>
-        </div>
-        <div class="control-group">
-          <label class="control-label">Text</label>
-          <div class="controls">
-            <textarea rows="3" ng-model="editingObj.text" placeholder="Snippet Text" required></textarea>
-
-            <!-- Instructions -->
-            <div style="font-size: 93.3%">
-              <div class="alert alert-info">
-                <div>Format:</div>
-                <ol>
-                  <li>
-                    <p>Variable: <span class="label label-info">${NUMBER:STRING}</span></p>
-                    <p>eg: ${1:obj} ${2:foo} ${3:BAR}</p>
-                  </li>
-                  <li>
-                    <p>Cursor: <span class="label label-info">${NUMBER}</span></p>
-                    <p>eg: ${1} ${2}</p>
-                  </li>
-                </ol>
-              </div>
-
-              <div class="alert alert-info">
-                <div>Notes:</div>
-                <ol>
-                  <li>
-                    <span class="label label-info">NUMBER</span> means order, which should start with 1.
-                  </li>
-                  <li>
-                    Cursor would be ignored if it has the same order with variables.
-                  </li>
-                  <li>
-                    Could not go through the variables with Tab in HTML/CSS if <span class="label label-info">Emmet</span> installed.
-                  </li>
-                </ol>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+      <!-- Snippet Editing -->
+      <div ng-if="editingObj" ng-include="url('html/edit.html')"></div>
 
       <!-- Library -->
-      <div class="intro" ng-controller="LibraryCtrl" ng-if="isLibrary" ng-hide="editingObj">
-        <div class="alert alert-info">
-          <span>Notes:</span>
-          Could not go through the variables with Tab in HTML/CSS if <span class="label label-info">Emmet</span> installed.
-        </div>
-
-        <div class="btn-toolbar">
-          <div class="btn-group">
-            <button class="btn" ng-repeat="lang in languages track by lang.id" ng-click="toggleGroup(lang.id)" ng-class="{active:searchGroup===lang.id}">{{lang.name}}</button>
-          </div>
-          <button class="btn pull-right" ng-click="toggleSearch=!toggleSearch" ng-class="{active:toggleSearch}"><i class="icon-search"></i></button>
-        </div>
-
-        <!-- Filter Area -->
-        <div class="well well-small filter-area" ng-show="toggleSearch">
-          <div class="search-bar">
-            <input type="text" class="search-query" ng-model="search" placeholder="Search">
-            <i class="icon-search"></i>
-          </div>
-        </div>
-
-        <table class="table table-striped table-hover table-bordered">
-          <thead>
-            <tr>
-              <th>Trigger</th>
-              <th>Desc</th>
-              <th>Text</th>
-              <th>Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr ng-repeat="hint in libraryHints | filter:{scope:searchGroup} | filter:search track by hint.trigger">
-              <td><span class="label label-info trigger">{{hint.trigger}}</span></td>
-              <!-- <td>{{getLanguageName(hint.scope)}}</td> -->
-              <td>{{hint.description}}</td>
-              <td><pre class="code" hljs folding>{{hint.text}}</pre></td>
-              <td><button class="btn" ng-click="save(hint)">+</button></td>
-            </tr>
-          </tbody>
-        </table>
+      <div
+        ng-controller="LibraryCtrl"
+        ng-if="isLibrary"
+        ng-hide="editingObj"
+        ng-include="url('html/library.html')"
+        >
       </div>
 
       <!-- Settings -->
-      <div class="intro" ng-controller="SettingsCtrl" ng-if="isSetting" ng-hide="editingObj">
-        <form>
-          <div class="form-horizontal">
-            <div class="control-group">
-              <label class="control-label">Insert Snippets On Tab</label>
-              <div class="controls">
-                <input type="checkbox" ng-model="settingsData._insertHintOnTab" ng-disabled="saving">
-                <div class="alert alert-info">
-                  If set, the snippets provided by Brackets itself could be inserted by pressing <span class="label label-info">Tab</span>, but snippets listed on the left won't be affected.
-                </div>
-              </div>
-            </div>
-          </div>
-        </form>
+      <div
+        ng-controller="SettingsCtrl"
+        ng-if="isSetting"
+        ng-hide="editingObj"
+        ng-include="url('html/settings.html')"
+        >
       </div>
 
       <!-- Welcome Page -->
-      <div class="intro" ng-hide="editingObj || isSetting || isLibrary">
-        <h1>Brackets Snippets <small>(by edc)</small></h1>
-        <p>
-          <img ng-src="{{url('css/images/brackets-snippets-demo.gif')}}" alt="Screen Demo">
-        </p>
-
-        <p>If you find it useful please consider starring it on <a href="https://github.com/chuyik/brackets-snippets">Github</a> :)</p>
-        <p>If any thoughts, you are also welcome to create an <a href="https://github.com/chuyik/brackets-snippets/issues">issue</a> here.</p>
-
-        <h2>What's new? <small>(1.4.0)</small></h2>
-        <ol>
-          <li>Add search bar in library</li>
-          <li>Add `Save and Create` button</li>
-          <li>Remember last scope of the new snippet</li>
-          <li>More friendly remove confirmation</li>
-          <li>Fix minor issues</li>
-        </ol>
-
-        <h2>Credits</h2>
-        <ol>
-          <li><a href="https://github.com/zenorocha/sublime-javascript-snippets">JavaScript &amp; NodeJS Snippets for Sublime Text 2/3</a></li>
-          <li><a href="https://github.com/joshnh/HTML-Snippets">HTML snippets for Sublime Text</a></li>
-          <li><a href="https://github.com/joshnh/CSS-Snippets">CSS snippets for Sublime Text</a></li>
-        </ol>
+      <div
+        ng-hide="editingObj || isSetting || isLibrary"
+        ng-include="url('html/welcome.html')"
+        >
       </div>
     </div>
   </div>
