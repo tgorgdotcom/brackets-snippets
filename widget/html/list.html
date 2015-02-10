@@ -23,7 +23,7 @@
     ng-class="{active: originalObj === snippet}">
     <a>
       <span class="label label-info">{{snippet.trigger}}</span>
-      <span class="desc">{{snippet.description}}</span>
+      <span class="desc">{{snippet.tag}} {{snippet.description}}</span>
       <button class="close" pop-confirm confirm-cb="remove(snippet)" stop-event>&times;</button>
     </a>
   </li>

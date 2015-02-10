@@ -9,8 +9,15 @@ define('libraryCtrl', ['app', '_', 'libraryHints', 'languages'], function (app, 
 
     $scope.hideAlert = Storage.get('hideAlert');
 
+    var BLOCK_TAGS = ['VanillaJS'];
+
     $scope.save = function (snippet) {
       var snippetCopy = angular.copy(snippet);
+
+      // block some tags and prevent it from saving
+      if (snippetCopy.tag && _.contains(BLOCK_TAGS, snippetCopy.tag)) {
+        delete snippetCopy.tag;
+      }
 
       var group = $scope.groupedSnippets[snippet.scope];
 
