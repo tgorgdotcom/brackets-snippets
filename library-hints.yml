@@ -244,6 +244,195 @@
         overflow-wrap: break-word;
         word-wrap: break-word;
 
+
+# ---
+# Javascript: Console
+# From: https://github.com/zenorocha/sublime-javascript-snippets
+# ---
+- trigger: cl
+  scope: javascript
+  description: console.log
+  tag: VanillaJS
+  text: |
+        console.log(${1:obj});${2}
+
+- trigger: cd
+  scope: javascript
+  description: console.dir
+  tag: VanillaJS
+  text: |
+        console.dir(${1:obj});${2}
+
+- trigger: ce
+  scope: javascript
+  description: console.error
+  tag: VanillaJS
+  text: |
+        console.error(${1:obj});${2}
+
+- trigger: cll
+  scope: javascript
+  description: console.log
+  tag: VanillaJS
+  text: |
+        console.log('${1:obj}:', ${1:obj});${2}
+
+- trigger: cdd
+  scope: javascript
+  description: console.dir
+  tag: VanillaJS
+  text: |
+       console.dir('${1:obj}:', ${1:obj});${2}
+
+- trigger: cee
+  scope: javascript
+  description: console.error
+  tag: VanillaJS
+  text: |
+        console.error('${1:obj}:', ${1:obj});${2}
+
+# ---
+# Javascript: DOM
+# ---
+- trigger: ae
+  scope: javascript
+  description: document.addEventListener
+  tag: VanillaJS
+  text: |
+        ${1:document}.addEventListener('${2:event}', function(e) {
+          ${3}
+        });${4}
+
+- trigger: ac
+  scope: javascript
+  description: document.appendChild
+  tag: VanillaJS
+  text: |
+        ${1:document}.appendChild(${2:elem});${3}
+
+- trigger: rc
+  scope: javascript
+  description: document.removeChild
+  tag: VanillaJS
+  text: |
+        ${1:document}.removeChild(${2:elem});${3}
+
+- trigger: cel
+  scope: javascript
+  description: document.createElement
+  tag: VanillaJS
+  text: |
+        ${1:document}.createElement(${2:elem});${3}
+
+- trigger: gi
+  scope: javascript
+  description: document.getElementById
+  tag: VanillaJS
+  text: |
+        ${1:document}.getElementById('${2:id}');${3}
+
+- trigger: gc
+  scope: javascript
+  description: document.getElementsByClassName
+  tag: VanillaJS
+  text: |
+        ${1:document}.getElementsByClassName('${2:class}');${3}
+
+- trigger: gt
+  scope: javascript
+  description: document.getElementsByTagName
+  tag: VanillaJS
+  text: |
+        ${1:document}.getElementsByTagName('${2:tag}');${3}
+
+- trigger: qs
+  scope: javascript
+  description: document.querySelector
+  tag: VanillaJS
+  text: |
+        ${1:document}.querySelector('${2:selector}');${3}
+
+- trigger: qsa
+  scope: javascript
+  description: document.querySelectorAll
+  tag: VanillaJS
+  text: |
+        ${1:document}.querySelectorAll('${2:selector}');${3}
+
+# ---
+# Javascript: Loop
+# ---
+- trigger: fe
+  scope: javascript
+  description: forEach
+  tag: VanillaJS
+  text: |
+        ${1:myArray}.forEach(function (${2:elem}) {
+          ${3}
+        });${4}
+
+- trigger: fi
+  scope: javascript
+  description: for in
+  tag: VanillaJS
+  text: |
+        for (${1:prop} in ${2:obj}) {
+          if (${2:obj}.hasOwnProperty(${1:prop})) {
+            ${3}
+          }
+        }${4}
+
+# ---
+# Javascript: Function
+# ---
+- trigger: fn
+  scope: javascript
+  description: function
+  tag: VanillaJS
+  text: |
+        function ${1:methodName} (${2:arguments}) {
+          ${3}
+        }${4}
+
+- trigger: afn
+  scope: javascript
+  description: anonymous function
+  tag: VanillaJS
+  text: |
+        function (${1:arguments}) {
+          ${2}
+        }${3}
+
+- trigger: pr
+  scope: javascript
+  description: prototype
+  tag: VanillaJS
+  text: |
+        ${1:ClassName}.prototype.${2:methodName} = function (${3:arguments}) {
+          ${4}
+        };${5}
+
+# ---
+# Javascript: Timer
+# ---
+- trigger: si
+  scope: javascript
+  description: setInterval
+  tag: VanillaJS
+  text: |
+        setInterval(function() {
+          ${2}
+        }, ${1:delay});${3}
+
+- trigger: st
+  scope: javascript
+  description: setTimeout
+  tag: VanillaJS
+  text: |
+        setTimeout(function() {
+          ${2}
+        }, ${1:delay});${3}
+
 # ---
 # AngularJS
 # From: myself
