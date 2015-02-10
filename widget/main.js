@@ -76,6 +76,7 @@ define(function (require, exports, module) {
         highlightDirective:  './js/highlight.directive',
         popConfirmDirective:  './js/pop-confirm.directive',
         filterBarsDirective:  './js/filter-bars.directive',
+        storageService:  './js/storage.service',
         miscDirective:  './js/misc.directive'
       },
       shim: {
@@ -113,7 +114,7 @@ define(function (require, exports, module) {
     // Bootstrap angular
     requirejs(['angular', 'app', 'snippetsCtrl', 'settingsCtrl', 'libraryCtrl',
                 'foldingDirective', 'highlightDirective', 'popConfirmDirective',
-                'filterBarsDirective', 'miscDirective'],
+                'filterBarsDirective', 'storageService', 'miscDirective'],
       function(angular) {
         $appPanel.ready(function() {
           angular.bootstrap($appPanel, ['snippets-manager']);
