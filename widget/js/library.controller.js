@@ -1,11 +1,13 @@
 define('libraryCtrl', ['app', '_', 'libraryHints', 'languages'], function (app, _, libraryHints, definedLanguages) {
-  app.controller('LibraryCtrl', function ($scope, $document, $timeout) {
+  app.controller('LibraryCtrl', function ($scope, $document, $timeout, Storage) {
 
     $scope.libraryHints = libraryHints;
 
     $scope.filters = {};
 
     $scope.definedLanguages = definedLanguages;
+
+    $scope.hideAlert = Storage.get('hideAlert');
 
     $scope.save = function (snippet) {
       var snippetCopy = angular.copy(snippet);
@@ -27,5 +29,9 @@ define('libraryCtrl', ['app', '_', 'libraryHints', 'languages'], function (app, 
       $scope.informChange();
     }
 
+    $scope.dismissAlert = function () {
+      Storage.set('hideAlert', true);
+      $scope.hideAlert = true;
+    }
   })
 })

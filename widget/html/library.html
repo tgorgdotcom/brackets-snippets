@@ -1,6 +1,7 @@
-<div class="alert alert-info">
+<div class="alert alert-info" ng-if="!hideAlert">
   <span>Notes:</span>
   Could not go through the variables with Tab in HTML/CSS if <span class="label label-info">Emmet</span> installed.
+  <button class="close" pop-confirm confirm-cb="dismissAlert()" confirm-msg="I got it.">&times;</button>
 </div>
 
 <div filter-bars hints="libraryHints" filters="filters" defined-languages="definedLanguages"></div>
