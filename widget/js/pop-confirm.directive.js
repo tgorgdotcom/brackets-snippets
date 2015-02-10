@@ -17,20 +17,26 @@ define('popConfirmDirective', ['app'], function(app) {
     return {
       scope: {
         confirmCb: '&',
-        cancelCb: '&?'
+        cancelCb: '&?',
+        confirmMsg: '@'
       },
       link: function ($scope, elem) {
+        elem.parent().css('position', 'relative');
 
         elem.on('click', function () {
 
+          // remove last div
           if ($lastDiv)
             $lastDiv.remove();
 
+          // parseHtml
           var $div = $(html);
-          elem.before($div);
 
-          $lastDiv = $div;
+          // change text
+          if ($scope.confirmMsg)
+            $div.find('#confirm-btn').text($scope.confirmMsg);
 
+          // add click event
           $div.find('#confirm-btn').on('click', function () {
             $div.addClass('explode');
             $timeout(function() {
@@ -39,6 +45,14 @@ define('popConfirmDirective', ['app'], function(app) {
               $div.remove();
             }, 400)
           });
+
+          elem.before($div);
+
+          // adjust position
+          var offsetHeight = elem.parent().innerHeight() - $div.innerHeight();
+          $div.css('top', offsetHeight / 2);
+
+          $lastDiv = $div;
 
           // $div.find('#cancel-btn').on('click', function () {
           //   $div.addClass('dive');
