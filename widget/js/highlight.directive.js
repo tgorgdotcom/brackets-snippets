@@ -4,7 +4,7 @@ define('highlightDirective', ['app', 'highlight'], function(app, hljs) {
       link: function ($scope, elem) {
         $timeout(function() {
           hljs.highlightBlock(elem[0]);
-        })
+        }, 100)
       }
     }
   })
