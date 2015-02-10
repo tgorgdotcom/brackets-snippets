@@ -2,16 +2,20 @@ define('snippetsCtrl', ['app', '_', 'userHints', 'languages'], function (app, _,
   app.controller('SnippetsCtrl', function ($scope, $document, $timeout) {
     $scope.editingObj = null;
 
+    $scope.snippets = snippets;
+
     $scope.groupedSnippets = _.groupBy(snippets, function (snippet) {
       return snippet.scope;
     })
 
     $scope.triggerPattern = /^[^\s,\./"';:(){}\[\]]+$/; //"
 
+    $scope.filters = {};
+
     $scope.languages = languages;
 
     $scope.getLanguageName = function (key) {
-      return _.find($scope.languages, {id: key}).name;
+      return _.find($scope.languages, {id: key}).name || key;
     }
 
     $scope.toLibrary = function () {
@@ -139,6 +143,8 @@ define('snippetsCtrl', ['app', '_', 'userHints', 'languages'], function (app, _,
       $scope.showMsg = false;
 
       snippets = _.chain($scope.groupedSnippets).values().flatten().value();
+      $scope.snippets = snippets;
+
       $document.trigger('snippets-changed', [snippets]);
 
       // makes user feel the change
@@ -157,6 +163,16 @@ define('snippetsCtrl', ['app', '_', 'userHints', 'languages'], function (app, _,
 
     $scope.useLastScope = function () {
       $scope.editingObj.scope = $scope.lastScope;
+    }
+
+    $scope.toggleSearch = function () {
+      if ($scope.isSearch) {
+        delete $scope.filters.scope;
+        delete $scope.filters.search;
+        $scope.isSearch = false;
+      } else {
+        $scope.isSearch = true;
+      }
     }
   })
 })

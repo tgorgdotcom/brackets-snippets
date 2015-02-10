@@ -1,24 +1,24 @@
 <!-- Buttons -->
 <div class="control-btns">
   <button class="btn" ng-click="toNew()">New +</button>
-  <button class="btn pull-right" ng-click="toggleSearch=!toggleSearch" ng-class="{active:toggleSearch}"><i class="icon-search"></i></button>
+  <button class="btn pull-right" ng-click="toggleSearch()" ng-class="{active:isSearch}"><i class="icon-search"></i></button>
 </div>
 
 <!-- Filter Area -->
-<div class="well well-small filter-area" ng-show="toggleSearch">
-  <select class="group-select" ng-options="key as getLanguageName(key) for (key, group) in groupedSnippets" ng-model="searchGroup">
+<div class="well well-small filter-area" ng-show="isSearch">
+  <select class="group-select" ng-options="key as getLanguageName(key) for (key, group) in groupedSnippets" ng-model="filters.scope">
     <option value="">Select Scope...</option>
   </select>
   <div class="search-bar">
-    <input type="text" class="search-query" ng-model="search" placeholder="Search">
+    <input type="text" class="search-query" ng-model="filters.search" placeholder="Search">
     <i class="icon-search"></i>
   </div>
 </div>
 
 <!-- Snippets List -->
-<ul class="nav nav-list" ng-repeat="(key, group) in groupedSnippets" ng-if="!searchGroup || key === searchGroup">
+<ul class="nav nav-list" ng-repeat="(key, group) in groupedSnippets" ng-if="!filters.scope || key === filters.scope">
   <li class="nav-header">{{getLanguageName(key)}}</li>
-  <li class="snippet-item" ng-repeat="snippet in group | orderBy: 'trigger' | filter: search track by snippet.trigger"
+  <li class="snippet-item" ng-repeat="snippet in group | orderBy: 'trigger' | filter: filters.search track by snippet.trigger"
     ng-click="toEdit(snippet)"
     ng-class="{active: originalObj === snippet}">
     <a>
@@ -28,3 +28,24 @@
     </a>
   </li>
 </ul>
+
+<!--
+<div class="control-btns">
+  <button class="btn" ng-click="toNew()">New +</button>
+</div>
+
+<div filter-bars hints="snippets" filters="filters" defined-languages="languages"></div>
+
+<ul class="nav nav-list" ng-repeat="(key, group) in groupedSnippets" ng-if="!filters.scope || key === filters.scope">
+  <li class="nav-header">{{getLanguageName(key)}}</li>
+  <li class="snippet-item" ng-repeat="snippet in group | orderBy: 'trigger' | filter:{tag:filters.tag} | filter:filters.search track by snippet.trigger"
+    ng-click="toEdit(snippet)"
+    ng-class="{active: originalObj === snippet}">
+    <a>
+      <span class="label label-info">{{snippet.trigger}}</span>
+      <span class="desc">{{snippet.description}}</span>
+      <button class="close" pop-confirm confirm-cb="remove(snippet)">&times;</button>
+    </a>
+  </li>
+</ul>
+ -->
