@@ -23,8 +23,7 @@ Imitate snippets feature of Sublime Text, and bring it to [Brackets](http://brac
 > 3. Perform a [pull request](https://github.com/chuyik/brackets-snippets/pulls).
 
 # Snippet Format
-Basically follows Sublime Text, you would see help when creating an snippet.
-Or follows the examples in `Snippets Library`.
+You will see help on snippet creating page. Or check out the examples in `Snippets Library`.
 > Environment variables would be added in future, see Todo#1.
 
 # Installation
