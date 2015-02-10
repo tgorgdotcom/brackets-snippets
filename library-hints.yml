@@ -244,3 +244,95 @@
         overflow-wrap: break-word;
         word-wrap: break-word;
 
+# ---
+# AngularJS
+# From: myself
+# ---
+- trigger: config
+  scope: javascript
+  description: Config
+  tag: AngularJS
+  text: |
+        config(function (${1:$stateProvider}) {
+          ${2}
+        })${3}
+
+- trigger: controller
+  scope: javascript
+  description: Controller
+  tag: AngularJS
+  text: |
+        controller('${1:name}', function (${2:$scope}) {
+          ${3}
+        })${4}
+
+- trigger: directive
+  scope: javascript
+  description: Directive
+  tag: AngularJS
+  text: |
+        directive('${1:name}', function () {
+          return {
+            templateUrl: '${2:view/foo.html}',
+            restrict: '${3:A}',
+            scope: {
+            },
+            link: function postLink (${4:$scope, elem, attrs}) {
+              ${5}
+            }
+          }
+        })${6}
+
+- trigger: factory
+  scope: javascript
+  description: Factory
+  tag: AngularJS
+  text: |
+        factory('${1:name}', function (${2}) {
+          ${3}
+          return null;
+        })${4}
+
+- trigger: filter
+  scope: javascript
+  description: Filter
+  tag: AngularJS
+  text: |
+        filter(${1:name}, function(){
+          return function(input){
+            ${2}
+            return input;
+          };
+        })${3}
+
+- trigger: provider
+  scope: javascript
+  description: Provider
+  tag: AngularJS
+  text: |
+        provider('${1:name}', function () {
+          ${2}
+
+          this.$get = function () {
+            return null;
+          };
+        })${3}
+
+- trigger: run
+  scope: javascript
+  description: Run
+  tag: AngularJS
+  text: |
+        run(${1:$rootScope}, function () {
+          ${2}
+        })${3}
+
+- trigger: service
+  scope: javascript
+  description: Service
+  tag: AngularJS
+  text: |
+        service('${1:name}', function (${2}) {
+          ${3}
+          return null;
+        })${4}
