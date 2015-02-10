@@ -1,4 +1,4 @@
-define('uiDirective', ['app'], function(app) {
+define('miscDirective', ['app'], function(app) {
   app.directive('blink', function($timeout) {
     return {
       link: function ($scope, elem) {
@@ -20,4 +20,13 @@ define('uiDirective', ['app'], function(app) {
       }
     }
   })
+  .directive('stopEvent', function() {
+    return {
+      link: function(scope, elem, attr) {
+        elem.bind('click', function(e) {
+          e.stopPropagation();
+        });
+      }
+    };
+  });
 });
