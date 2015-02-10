@@ -5,22 +5,41 @@
 
 <div filter-bars hints="libraryHints" filters="filters" defined-languages="definedLanguages"></div>
 
-<table class="table table-striped table-hover table-bordered">
+<!-- <style type="text/css">
+  #snippets-table td > p {
+    word-break: break-word;
+  }
+</style> -->
+
+<!-- <table id="snippets-table" class="table table-striped table-hover table-bordered">
   <thead>
     <tr>
-      <th>Trigger</th>
+      <th style="width: 13%;">Trigger</th>
       <th>Desc</th>
-      <th>Text</th>
-      <th>Action</th>
+      <th style="width: 50%;">Text</th>
+      <th style="width: 13%;">Action</th>
     </tr>
   </thead>
   <tbody>
     <tr ng-repeat="hint in libraryHints | filter:{scope:filters.scope} | filter:{tag:filters.tag} | filter:filters.search track by hint.trigger">
       <td><span class="label label-info trigger">{{hint.trigger}}</span></td>
-      <!-- <td>{{getLanguageName(hint.scope)}}</td> -->
-      <td>{{hint.description}}</td>
+      <td><p>{{hint.description}}</p></td>
       <td><pre class="code" hljs folding>{{hint.text}}</pre></td>
       <td><button class="btn" ng-click="save(hint)" blink>+</button></td>
     </tr>
   </tbody>
-</table>
+</table> -->
+
+<div>
+  <div class="library-hint" ng-repeat="hint in libraryHints | filter:{scope:filters.scope} | filter:{tag:filters.tag} | filter:filters.search track by hint.trigger">
+    <div class="hint-info">
+      <span class="label label-info trigger">{{hint.trigger}}</span>
+      <span>{{hint.description}}</span>
+      <button class="btn btn-mini pull-right" ng-click="save(hint)" blink>+</button>
+    </div>
+
+    <div>
+      <pre class="code" hljs folding>{{hint.text}}</pre>
+    </div>
+  </div>
+</div>
