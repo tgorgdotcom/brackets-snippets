@@ -16,7 +16,7 @@ Imitate snippets feature of Sublime Text, and bring it to [Brackets](http://brac
 
 # Snippets Library
 ![snippets-library.png](http://edwardchu.org/assets/images/snippets-library@2x.png "Snippets Library Screenshot")
-> The library is currently maintained by myself, you can contribute by simply creating an issue, or
+> The library is currently maintained by myself, you can contribute more snippets by simply creating an issue and submit your snippets, or
 > 
 > 1. Fork this project;
 > 2. Edit [library-hints.yml](https://github.com/chuyik/brackets-snippets/blob/master/library-hints.yml), then commit changes and push it to your repository;
@@ -24,15 +24,16 @@ Imitate snippets feature of Sublime Text, and bring it to [Brackets](http://brac
 
 # Snippet Format
 You will see help on snippet creating page. Or check out the examples in `Snippets Library`.
-> Environment variables would be added in future, see Todo#1.
+> Environment variables would be added in future, see Todo#2.
 
 # Installation
 Search `Brackets Snippets (by edc)` in Brackets Extension Manager, and install it.
 
 # Todo
-1. Add [Environment Variables](http://docs.sublimetext.info/en/latest/extensibility/snippets.html#environment-variables) support like what Sublime Text provides
-2. Allow import/export snippets (yaml format)
-3. Allow `Alt(Option)+Tab` to focus previous variables
+1. Show snippets according to code context rather than file type, such as supporting internal style sheet
+2. Add [Environment Variables](http://docs.sublimetext.info/en/latest/extensibility/snippets.html#environment-variables) support like what Sublime Text provides
+3. Allow import/export snippets (yaml format)
+4. Allow `Alt(Option)+Tab` to focus previous variables
 
 # Credits
 1. [JavaScript & NodeJS Snippets for Sublime Text 2/3](https://github.com/zenorocha/sublime-javascript-snippets)
