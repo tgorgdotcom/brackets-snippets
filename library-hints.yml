@@ -525,3 +525,191 @@
           ${3}
           return null;
         })${4}
+
+# ---
+# php
+# from: erknrio #5
+# ---
+- trigger: if
+  scope: php
+  description: if
+  text: |
+        if (${1:condition}) {
+            ${2}
+        }
+
+- trigger: ifelse
+  scope: php
+  description: if else
+  text: |
+        if (${1:condition}) {
+            ${2}
+        } else {
+            ${3}
+        }
+
+- trigger: if?
+  scope: php
+  description: if ternary
+  text: |
+        $${1:var}= (${2:condition}) ? ${3:TRUE} : ${4:FALSE};
+
+- trigger: ifalt
+  scope: php
+  description: if alternative
+  text: |
+        if (${1:condition})
+          ${2}
+        endif;
+
+- trigger: for
+  scope: php
+  description: for
+  text: |
+        for ($i = ${1:init}; $i < ${2:length}; $i++) {
+            ${3}
+        }
+
+- trigger: fordec
+  scope: php
+  description: for decremental
+  text: |
+        for ($i = ${1:init}; $i > ${2:length}; $i--) {
+            ${3}
+        }
+
+- trigger: foreach
+  scope: php
+  description: foreach
+  text: |
+        foreach ($${1:var} as $${2:key} => $${3:value}) {
+            ${4}
+        }
+
+- trigger: foreachalt
+  scope: php
+  description: foreach alternative
+  text: |
+        foreach ($${1:var} as $${2:key} => $${3:value}):
+            ${4}
+        endforeach;
+
+- trigger: foralt
+  scope: php
+  description: for alternative
+  text: |
+        for ($i = ${1:init}; $i < ${2:length}; $i++):
+            ${3}
+        endfor;
+
+- trigger: switch
+  scope: php
+  description: switch
+  text: |
+        switch ($${1:var}) {
+            case ${2:'value'}:
+                ${3}
+                break;
+
+            default:
+                break;
+
+- trigger: switchalt
+  scope: php
+  description: switch alternative
+  text: |
+        switch ($${1:var}):
+            case ${2:'value'}:
+                ${3}
+                break;
+
+            default:
+                break;
+            endswitch;
+
+- trigger: vardump
+  scope: php
+  description: var_dump
+  text: |
+        var_dump($${1:var});
+
+- trigger: printr
+  scope: php
+  description: print_r
+  text: |
+        print_r($${1:var});
+
+- trigger: fu
+  scope: php
+  description: function
+  text: |
+        ${1:public} function ${2:FunctionName} ($${3:value} = ${4:''})
+        {
+            ${5}
+        }
+
+- trigger: echo
+  scope: php
+  description: echo string
+  text: |
+        echo '${1:string}';
+
+- trigger: echovar
+  scope: php
+  description: echo variable
+  text: |
+        echo $${1:var};
+
+- trigger: echostringvar
+  scope: php
+  description: echo string and variable
+  text: |
+        echo '${1:string}' . $${2:var};
+
+- trigger: br
+  scope: php
+  description: echo html br
+  text: |
+        echo '</br>';
+
+- trigger: empty
+  scope: php
+  description: empty
+  text: |
+        empty($${1:var})
+
+- trigger: isset
+  scope: php
+  description: isset
+  text: |
+        isset($${1:var})
+
+- trigger: array
+  scope: php
+  description: array
+  text: |
+        array(${1:value});
+
+- trigger: arrayasoc
+  scope: php
+  description: array associative
+  text: |
+        array(${1:key} => ${2:value});
+
+- trigger: jsonencode
+  scope: php
+  description: json encode
+  text: |
+        json_encode(${1:data});
+
+- trigger: jsondecode
+  scope: php
+  description: json decode
+  text: |
+        json_decode(${1:data});
+
+- trigger: $
+  scope: php
+  description: new variable
+  text: |
+        $${1:var} = ${2:value};
