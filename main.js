@@ -37,7 +37,7 @@ define(function (require, exports, module) {
         hintWidget = new HintWidget();
         hintWidget.init(hinter);
       } else {
-        hinter.reinit(focusedEditor);
+        hinter.init(focusedEditor);
       }
 
       handlers = {
