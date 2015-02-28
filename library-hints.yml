@@ -14,7 +14,7 @@
   text: |
         <!--[if ${1:lt IE 9}]>
           <link rel=stylesheet href="${2:css/ie.css}">
-        <![endif]-->${3}
+        <![endif]-->
 
 - trigger: css
   scope: html
@@ -209,7 +209,7 @@
             100% {
               ${3:transform: translate3d(0, 0, 0);}
             }
-        }${4}
+        }
 
 - trigger: med
   scope: css
@@ -217,7 +217,7 @@
   text: |
         @media (min-width: ${1}) {
           ${2}
-        }${3}
+        }
 
 - trigger: r
   scope: css
@@ -308,7 +308,7 @@
   text: |
         ${1:document}.addEventListener('${2:event}', function(e) {
           ${3}
-        });${4}
+        });
 
 - trigger: ac
   scope: javascript
@@ -385,7 +385,7 @@
   text: |
         ${1:myArray}.forEach(function (${2:elem}) {
           ${3}
-        });${4}
+        });
 
 - trigger: fi
   scope: javascript
@@ -397,7 +397,7 @@
           if (${2:obj}.hasOwnProperty(${1:prop})) {
             ${3}
           }
-        }${4}
+        }
 
 # ---
 # Javascript: Function
@@ -410,7 +410,7 @@
   text: |
         function ${1:methodName} (${2:arguments}) {
           ${3}
-        }${4}
+        }
 
 - trigger: afn
   scope: javascript
@@ -420,7 +420,7 @@
   text: |
         function (${1:arguments}) {
           ${2}
-        }${3}
+        }
 
 - trigger: pr
   scope: javascript
@@ -430,7 +430,7 @@
   text: |
         ${1:ClassName}.prototype.${2:methodName} = function (${3:arguments}) {
           ${4}
-        };${5}
+        };
 
 # ---
 # Javascript: Timer
@@ -443,7 +443,7 @@
   text: |
         setInterval(function() {
           ${2}
-        }, ${1:delay});${3}
+        }, ${1:delay});
 
 - trigger: st
   scope: javascript
@@ -453,7 +453,7 @@
   text: |
         setTimeout(function() {
           ${2}
-        }, ${1:delay});${3}
+        }, ${1:delay});
 
 # ---
 # AngularJS
@@ -466,7 +466,7 @@
   text: |
         config(function (${1:$stateProvider}) {
           ${2}
-        })${3}
+        })
 
 - trigger: controller
   scope: javascript
@@ -475,7 +475,7 @@
   text: |
         controller('${1:name}', function (${2:$scope}) {
           ${3}
-        })${4}
+        })
 
 - trigger: directive
   scope: javascript
@@ -492,7 +492,7 @@
               ${5}
             }
           }
-        })${6}
+        })
 
 - trigger: factory
   scope: javascript
@@ -502,7 +502,7 @@
         factory('${1:name}', function (${2}) {
           ${3}
           return null;
-        })${4}
+        })
 
 - trigger: filter
   scope: javascript
@@ -514,7 +514,7 @@
             ${2}
             return input;
           };
-        })${3}
+        })
 
 - trigger: provider
   scope: javascript
@@ -527,7 +527,7 @@
           this.$get = function () {
             return null;
           };
-        })${3}
+        })
 
 - trigger: run
   scope: javascript
@@ -536,7 +536,7 @@
   text: |
         run(${1:$rootScope}, function () {
           ${2}
-        })${3}
+        })
 
 - trigger: service
   scope: javascript
@@ -546,7 +546,7 @@
         service('${1:name}', function (${2}) {
           ${3}
           return null;
-        })${4}
+        })
 
 # ---
 # php
@@ -557,7 +557,7 @@
   description: if
   text: |
         if (${1:condition}) {
-            ${2}
+          ${2}
         }
 
 - trigger: ifelse
@@ -565,9 +565,9 @@
   description: if else
   text: |
         if (${1:condition}) {
-            ${2}
+          ${2}
         } else {
-            ${3}
+          ${3}
         }
 
 - trigger: if?
@@ -589,7 +589,7 @@
   description: for
   text: |
         for ($i = ${1:init}; $i < ${2:length}; $i++) {
-            ${3}
+          ${3}
         }
 
 - trigger: fordec
@@ -597,7 +597,7 @@
   description: for decremental
   text: |
         for ($i = ${1:init}; $i > ${2:length}; $i--) {
-            ${3}
+          ${3}
         }
 
 - trigger: foreach
@@ -605,7 +605,7 @@
   description: foreach
   text: |
         foreach ($${1:var} as $${2:key} => $${3:value}) {
-            ${4}
+          ${4}
         }
 
 - trigger: foreachalt
@@ -613,7 +613,7 @@
   description: foreach alternative
   text: |
         foreach ($${1:var} as $${2:key} => $${3:value}):
-            ${4}
+         ${4}
         endforeach;
 
 - trigger: foralt
@@ -621,7 +621,7 @@
   description: for alternative
   text: |
         for ($i = ${1:init}; $i < ${2:length}; $i++):
-            ${3}
+          ${3}
         endfor;
 
 - trigger: switch
@@ -629,25 +629,25 @@
   description: switch
   text: |
         switch ($${1:var}) {
-            case ${2:'value'}:
-                ${3}
-                break;
+          case ${2:'value'}:
+            ${3}
+            break;
 
-            default:
-                break;
+          default:
+            break;
 
 - trigger: switchalt
   scope: php
   description: switch alternative
   text: |
         switch ($${1:var}):
-            case ${2:'value'}:
-                ${3}
-                break;
+          case ${2:'value'}:
+            ${3}
+            break;
 
-            default:
-                break;
-            endswitch;
+          default:
+            break;
+        endswitch;
 
 - trigger: vardump
   scope: php
@@ -667,7 +667,7 @@
   text: |
         ${1:public} function ${2:FunctionName} ($${3:value} = ${4:''})
         {
-            ${5}
+          ${5}
         }
 
 - trigger: echo
