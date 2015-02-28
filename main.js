@@ -28,6 +28,7 @@ define(function (require, exports, module) {
         $(lostEditor).off("keypress", handlers.keypress);
         $(lostEditor).off("keyup", handlers.keyup);
         $(lostEditor).off("change", handlers.change);
+        $(lostEditor).off("cursorActivity", handlers.cursorActivity);
       }
     }
 
@@ -44,13 +45,15 @@ define(function (require, exports, module) {
         keydown: hinter.keyDownHandler.bind(hinter),
         keypress: hinter.keyPressHandler.bind(hinter),
         keyup: hinter.keyUpHandler.bind(hinter),
-        change: hinter.changeHandler.bind(hinter)
+        change: hinter.changeHandler.bind(hinter),
+        cursorActivity: hinter.cursorActivityHandler.bind(hinter)
       }
 
       $(focusedEditor).on("keydown", handlers.keydown);
       $(focusedEditor).on("keypress", handlers.keypress);
       $(focusedEditor).on("keyup", handlers.keyup);
       $(focusedEditor).on("change", handlers.change);
+      $(focusedEditor).on("cursorActivity", handlers.cursorActivity);
     }
   }
 
