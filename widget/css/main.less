@@ -271,7 +271,7 @@
   }
 
   /**
-   * rewrite default css
+   * Override default css
    */
   .label {
     color: #FFF !important;
@@ -319,6 +319,21 @@
     &.active:not([disabled]) {
       color: #2D6EB6;
       text-shadow: 1px 4px 6px #DEF, 0 0 0 #000, 1px 4px 6px #DEF;
+    }
+  }
+
+  .form-horizontal .control-label {
+    width: 140px;
+  }
+
+  .form-horizontal .controls {
+    margin-left: 155px;
+  }
+
+  .radios {
+    margin: 8px 0 10px;
+    > .radio > input[type="radio"] {
+      margin-top: 5px;
     }
   }
 

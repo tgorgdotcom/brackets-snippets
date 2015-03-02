@@ -14,6 +14,10 @@ define(function (require, exports, module) {
       _                = brackets.getModule("thirdparty/lodash"),
       LanguageManager  = brackets.getModule("language/LanguageManager"),
       PreferencesManager = brackets.getModule("preferences/PreferencesManager"),
+      FileSystem       = brackets.getModule("filesystem/FileSystem"),
+      FileUtils        = brackets.getModule("file/FileUtils"),
+      CommandManager   = brackets.getModule("command/CommandManager"),
+      Commands         = brackets.getModule("command/Commands"),
       HintManager      = require("../lib/HintManager");
 
   // Load HTML
@@ -67,6 +71,7 @@ define(function (require, exports, module) {
       paths: {
         highlight:  './thirdparty/highlight/highlight.pack',
         _: './thirdparty/lodash',
+        jsyaml: '../thirdparty/js-yaml.min',
         angular: './thirdparty/angular.min',
         app: './js/app',
         snippetsCtrl: './js/snippets.controller',
@@ -131,18 +136,56 @@ define(function (require, exports, module) {
     $appButton.toggleClass('active');
     if ($appButton.hasClass('active')) {
       // opened
-      $(document).on('snippets-changed', hintsUpdateHandler.bind(this));
+      $(document).on('update-snippets', hintsUpdateHandler.bind(this));
+      $(document).on('restore-snippets', hintsRestoreHandler.bind(this));
+      $(document).on('export-snippets', hintsExportHandler.bind(this));
       $(document).on('prefs-changed', prefUpdateHandler.bind(this));
     } else {
       // closed
       MainViewManager.focusActivePane();
-      $(document).off('snippets-changed');
+      $(document).off('restore-snippets');
+      $(document).off('update-snippets');
+      $(document).off('export-snippets');
       $(document).off('prefs-changed');
     }
   }
 
   function hintsUpdateHandler (ev, snippets) {
     this.hinter.updateHints(snippets);
+  }
+
+  function hintsRestoreHandler (ev, callback) {
+    this.hinter.restoreHints();
+    if (callback) {callback(this.hinter.allHints);}
+  }
+
+  function hintsExportHandler (ev, exportText, successCallback, failCallback) {
+    // beautify text first
+    exportText = exportText
+    .replace(                       // remove ""
+      /(\s\stext:\s)"(.*)"/g,
+      function (str, text, textContent) {
+        return text + textContent + '\n';
+      })
+    .replace(/\\n/g, '\n        '); // add indentation to multi-line text
+
+    // show file dialog and write out
+    FileSystem.showSaveDialog('Export location', null, 'export-snippets.yml', function(x, path) {
+      if (path) {
+        var file = FileSystem.getFileForPath(path);
+        FileUtils.writeText(file, exportText, true)
+        .done(function() {
+          if (successCallback) {successCallback(openFile, file)}
+        })
+        .fail(function() {
+          if (failCallback) {failCallback()}
+        });
+      }
+    })
+  }
+
+  function openFile (file) {
+    CommandManager.execute(Commands.CMD_OPEN, file)
   }
 
   /**

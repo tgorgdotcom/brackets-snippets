@@ -1,13 +1,86 @@
-<form>
-  <div class="form-horizontal">
-    <div class="control-group">
-      <label class="control-label">Insert Snippets On Tab</label>
-      <div class="controls">
-        <input type="checkbox" ng-model="settingsData._insertHintOnTab" ng-disabled="saving">
-        <div class="alert alert-info">
-          If set, the snippets provided by Brackets itself could be inserted by pressing <span class="label label-info">Tab</span>, but snippets listed on the left won't be affected.
-        </div>
+<div class="form-horizontal" ng-controller="SettingsCtrl">
+  <div class="control-group">
+    <label class="control-label">Insert Snippets On Tab</label>
+    <div class="controls">
+      <input type="checkbox" ng-model="settingsData._insertHintOnTab" ng-disabled="saving">
+      <div class="alert alert-info">
+        If set, the snippets provided by Brackets itself could be inserted by pressing <span class="label label-info">Tab</span>, but snippets listed on the left won't be affected.
       </div>
     </div>
   </div>
-</form>
+
+  <div class="control-group">
+    <label class="control-label">Import / Export</label>
+    <div class="controls">
+      <div>
+        <button class="btn" ng-click="togglePanel(0)">Import</button>
+        <button class="btn" ng-click="togglePanel(1)">Export</button>
+      </div>
+
+      <!-- Import Panel -->
+      <div class="well" ng-show="curPanel===0">
+        <div><b>1. Choose file: <span class="text-warning">(.yml or .yaml)</span></b></div>
+        <div><input type="file" ng-model="importFile" valid-file read-file accept-suffix="yml,yaml" error-handler="fileLoadError" success-handler="fileLoadSuccess"></div>
+        <div ng-if="importErrCode">
+          <div ng-switch on="importErrCode">
+            <div class="alert alert-error" ng-switch-when=1>
+              The file format is not valid, please select a YAML file.
+            </div>
+          </div>
+        </div>
+        <br>
+        <div><b>2. Choose import scheme:</b></div>
+        <div class="radios">
+          <label class="radio">
+            <input type="radio" ng-model="importType" value="3">
+            <span class="label label-warning">Skip</span> any existed snippets with the same Trigger in scope (Recommended)
+          </label>
+          <label class="radio">
+            <input type="radio" ng-model="importType" value="2">
+            <span class="label label-warning">Override</span> any existed snippets with the same Trigger in scope
+          </label>
+          <label class="radio">
+            <input type="radio" ng-model="importType" value="1">
+            <span class="label label-important">Clean up</span> all existed snippets first
+          </label>
+        </div>
+        <div><button class="btn" ng-disabled="!(importFile&&importType)" ng-click="importSnippets()">Start Import</button></div>
+      </div>
+
+      <!-- Export Panel -->
+      <div class="well" ng-show="curPanel===1">
+      <!-- <div><b>1. Export location (directory):</b></div> -->
+      <!-- <div><input type="text" ng-model="" placeholder="eg: /Users/user/Desktop"></div> -->
+      <!-- <div ng-if="exportErrCode">
+        <div ng-switch on="exportErrCode">
+          <div class="alert alert-error" ng-switch-when=1>
+            The location should be a directory.
+          </div>
+        </div>
+      </div> -->
+      <!-- <br> -->
+        <div><b>2. Choose export scheme:</b></div>
+        <div class="radios">
+          <label class="radio">
+            <input type="radio" ng-model="exportType" value="1">
+            Export user-defined snippets only (Recommended)
+          </label>
+          <label class="radio">
+            <input type="radio" ng-model="exportType" value="2">
+            Export all snippets
+          </label>
+        </div>
+
+        <div><button class="btn" ng-disabled="!(exportType)" ng-click="exportSnippets()">Start Export</button></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <label class="control-label">Reset</label>
+    <div class="controls">
+      <button class="btn" ng-click="restoreDefault()">Restore default snippets</button>
+    </div>
+  </div>
+
+</div>

@@ -1,18 +1,21 @@
 define('snippetsCtrl', ['app', '_', 'userHints', 'languages'], function (app, _, snippets, languages) {
-  app.controller('SnippetsCtrl', function ($scope, $document, $timeout) {
+  app.controller('SnippetsCtrl', function ($rootScope, $scope, $document, $timeout) {
     $scope.editingObj = null;
 
-    $scope.snippets = snippets;
-
-    $scope.groupedSnippets = _.groupBy(snippets, function (snippet) {
-      return snippet.scope;
-    })
+    $rootScope.snippets = snippets;
+    groupSnippets();
 
     $scope.triggerPattern = /^[^\s,\./"';:(){}\[\]]+$/; //"
 
     $scope.filters = {};
 
     $scope.languages = languages;
+
+    function groupSnippets () {
+      $scope.groupedSnippets = _.groupBy($rootScope.snippets, function (snippet) {
+        return snippet.scope;
+      })
+    }
 
     $scope.getLanguageName = function (key) {
       return _.find($scope.languages, {id: key}).name || key;
@@ -139,13 +142,12 @@ define('snippetsCtrl', ['app', '_', 'userHints', 'languages'], function (app, _,
     }
 
     var timeoutObj;
-    $scope.informChange = function () {
+    $scope.informChange = function (snippets) {
       $scope.showMsg = false;
 
-      snippets = _.chain($scope.groupedSnippets).values().flatten().value();
-      $scope.snippets = snippets;
+      $rootScope.snippets = snippets || _.chain($scope.groupedSnippets).values().flatten().value();
 
-      $document.trigger('snippets-changed', [snippets]);
+      $document.trigger('update-snippets', [snippets]);
 
       // makes user feel the change
       $timeout(function() {
@@ -160,6 +162,11 @@ define('snippetsCtrl', ['app', '_', 'userHints', 'languages'], function (app, _,
         }, 3000)
       }, 200)
     }
+
+    $scope.$on('snippets-changed', function(ev, snippets) {
+      $scope.informChange(snippets);
+      groupSnippets();
+    })
 
     $scope.useLastScope = function () {
       $scope.editingObj.scope = $scope.lastScope;

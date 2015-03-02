@@ -1,4 +1,4 @@
-<form id="edc-brackets-snippets-panel" name="form"
+<div id="edc-brackets-snippets-panel" ng-form="form"
   class="bottom-panel vert-resizable top-resizer"
   ng-app="snippets-manager" ng-controller="SnippetsCtrl">
 
@@ -36,7 +36,6 @@
 
       <!-- Settings -->
       <div
-        ng-controller="SettingsCtrl"
         ng-if="isSetting"
         ng-hide="editingObj"
         ng-include="url('html/settings.html')"
@@ -51,4 +50,4 @@
       </div>
     </div>
   </div>
-</form>
+</div>
