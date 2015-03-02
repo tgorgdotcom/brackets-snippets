@@ -100,6 +100,9 @@ define('snippetsCtrl', ['app', '_', 'userHints', 'languages'], function (app, _,
       if (!$scope.validate(editingObj))
         return;
 
+      // add timestamp
+      editingObj.mTime = new Date().getTime();
+
       var group = $scope.groupedSnippets[editingObj.scope];
 
       // create scope if not existed
