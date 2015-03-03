@@ -29,6 +29,12 @@ You will see help on snippet creating page. Or check out the examples in `Snippe
 # Installation
 Search `Brackets Snippets (by edc)` in Brackets Extension Manager, and install it.
 
+Failed to download it in Brackets? Try the alternative instructions:
+
+1. [Download](http://brackets.dnbard.com/extension/edc.brackets-snippets) .zip package of the latest version
+2. Drag the file into the bottom-left position of Extension Manager
+3. Restart Brackets
+
 # Todo
 1. ~~Show snippets according to code context rather than file type, such as supporting internal style sheet~~
 2. Add [Environment Variables](http://docs.sublimetext.info/en/latest/extensibility/snippets.html#environment-variables) support like what Sublime Text provides
