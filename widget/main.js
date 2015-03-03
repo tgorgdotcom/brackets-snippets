@@ -164,10 +164,14 @@ define(function (require, exports, module) {
     exportText = exportText
     .replace(                       // remove ""
       /(\s\stext:\s)"(.*)"/g,
-      function (str, text, textContent) {
-        return text + textContent + '\n';
-      })
-    .replace(/\\n/g, '\n        '); // add indentation to multi-line text
+      function (str, textKey, textValue) {
+        return textKey +
+                '|\n        ' +
+                textValue
+                  .replace(/\\"/g, '"')
+                  .replace(/\\n/g, '\n        ') + // add indentation to multi-line text
+                '\n';
+      });
 
     // show file dialog and write out
     FileSystem.showSaveDialog('Export location', null, 'export-snippets.yml', function(x, path) {

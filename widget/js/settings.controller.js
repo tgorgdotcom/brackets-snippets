@@ -28,8 +28,14 @@ define('settingsCtrl', ['app', '_', 'settingsData', 'jsyaml'], function (app, _,
       if (!$scope.importFile || !$scope.importType)
         return;
 
-      var existedSnippets = $rootScope.snippets;
-      var importedSnippets = jsyaml.load($scope.importFile.content);
+      var importedSnippets, existedSnippets = $rootScope.snippets;
+      try{
+        importedSnippets = jsyaml.load($scope.importFile.content);
+      } catch (e) {
+        console.log(e);
+        $window.alert('Import fail: The file contains some syntax errors.');
+        return;
+      }
 
       if (!importedSnippets || !importedSnippets.length) {
         $window.alert('Import fail: The file has no valid snippets.');

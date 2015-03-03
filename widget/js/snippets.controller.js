@@ -150,7 +150,7 @@ define('snippetsCtrl', ['app', '_', 'userHints', 'languages'], function (app, _,
 
       $rootScope.snippets = snippets || _.chain($scope.groupedSnippets).values().flatten().value();
 
-      $document.trigger('update-snippets', [snippets]);
+      $document.trigger('update-snippets', [$rootScope.snippets]);
 
       // makes user feel the change
       $timeout(function() {
