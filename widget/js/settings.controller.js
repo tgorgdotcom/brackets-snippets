@@ -53,7 +53,7 @@ define('settingsCtrl', ['app', '_', 'settingsData', 'jsyaml'], function (app, _,
       switch($scope.import.type) {
         case '1':  // remove all snippets
           existedSnippets = importedSnippets;
-          importCount = importSnippets.length;
+          importCount = importedSnippets.length;
           break;
         case '2':  // override all snippets with same trigger
         case '3':  // skip all snippets with same trigger
