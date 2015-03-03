@@ -30,9 +30,9 @@ You will see help on snippet creating page. Or check out the examples in `Snippe
 Search `Brackets Snippets (by edc)` in Brackets Extension Manager, and install it.
 
 # Todo
-~~1. Show snippets according to code context rather than file type, such as supporting internal style sheet~~
+1. ~~Show snippets according to code context rather than file type, such as supporting internal style sheet~~
 2. Add [Environment Variables](http://docs.sublimetext.info/en/latest/extensibility/snippets.html#environment-variables) support like what Sublime Text provides
-~~3. Allow import/export snippets (yaml format)~~
+3. ~~Allow import/export snippets (yaml format)~~
 4. Allow `Alt(Option)+Tab` to focus previous variables
 
 # Credits
