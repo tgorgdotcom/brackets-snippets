@@ -24,13 +24,15 @@ define('settingsCtrl', ['app', '_', 'settingsData', 'jsyaml'], function (app, _,
         $scope.curPanel = idx;
     }
 
+    $scope.import = {};
+    $scope.export = {};
     $scope.importSnippets = function () {
-      if (!$scope.importFile || !$scope.importType)
+      if (!$scope.import.file || !$scope.import.type)
         return;
 
       var importedSnippets, existedSnippets = $rootScope.snippets;
       try{
-        importedSnippets = jsyaml.load($scope.importFile.content);
+        importedSnippets = jsyaml.load($scope.import.file.content);
       } catch (e) {
         console.log(e);
         $window.alert('Import fail: The file contains some syntax errors.');
@@ -48,7 +50,7 @@ define('settingsCtrl', ['app', '_', 'settingsData', 'jsyaml'], function (app, _,
         importCount = 0,
         skipCount = 0,
         overrideCount = 0;
-      switch($scope.importType) {
+      switch($scope.import.type) {
         case '1':  // remove all snippets
           existedSnippets = importedSnippets;
           importCount = importSnippets.length;
@@ -58,11 +60,11 @@ define('settingsCtrl', ['app', '_', 'settingsData', 'jsyaml'], function (app, _,
           for (var i = importedSnippets.length - 1; i >= 0; i--) {
             var snippet = importedSnippets[i];
             if ((idx = _.findIndex(existedSnippets, {trigger: snippet.trigger, scope:snippet.scope})) > -1) {
-              if ($scope.importType === '2') {
+              if ($scope.import.type === '2') {
                 // override
                 existedSnippets[idx] = snippet;
                 overrideCount++;
-              } else if ($scope.importType === '3') {
+              } else if ($scope.import.type === '3') {
                 // skip
                 skipCount++;
               }
@@ -84,16 +86,19 @@ define('settingsCtrl', ['app', '_', 'settingsData', 'jsyaml'], function (app, _,
         'Skipped: ' + skipCount + '\n'
       );
 
-      $scope.importType = null;
+      // reset
+      $scope.import.file = null;
+      $scope.import.type = null;
+      $scope.curPanel = null;
     }
 
     $scope.exportSnippets = function () {
-      if (!$scope.exportType)
+      if (!$scope.export.type)
         return;
 
       var snippets = angular.copy($rootScope.snippets);
 
-      switch ($scope.exportType) {
+      switch ($scope.export.type) {
         case '1': // Export user-defined snippets only
           for (var i = snippets.length - 1; i >= 0; i--) {
             if (snippets[i].source === 'system') {
@@ -131,8 +136,11 @@ define('settingsCtrl', ['app', '_', 'settingsData', 'jsyaml'], function (app, _,
         exportText,
         function(openFile, file) {
           if ($window.confirm('Successfully exported! Open the file now?')) {
-            openFile(file);
+            openFile(file)
           }
+          $scope.$apply(function() {
+            $scope.curPanel = null;
+          });
         },
         function() {
           $window.alert('Something goes wrong...');
@@ -141,11 +149,11 @@ define('settingsCtrl', ['app', '_', 'settingsData', 'jsyaml'], function (app, _,
     }
 
     $scope.fileLoadSuccess = function () {
-      $scope.importErrCode = -1;
+      $scope.import.errCode = -1;
     }
 
     $scope.fileLoadError = function (errCode) {
-      $scope.importErrCode = errCode;
+      $scope.import.errCode = errCode;
     }
 
     $scope.restoreDefault = function () {
