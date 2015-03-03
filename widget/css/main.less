@@ -279,6 +279,10 @@
     text-shadow: none;
   }
 
+  li > .label {
+    font-size: 80%;
+  }
+
   .alert {
     margin-top: 4px;
 
@@ -319,6 +323,13 @@
     &.active:not([disabled]) {
       color: #2D6EB6;
       text-shadow: 1px 4px 6px #DEF, 0 0 0 #000, 1px 4px 6px #DEF;
+    }
+  }
+
+  .normal-list {
+    > li:not(.nav-header) {
+      list-style: decimal;
+      margin-left: 25px;
     }
   }
 
