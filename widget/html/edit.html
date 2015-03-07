@@ -30,29 +30,25 @@
       <!-- Instructions -->
       <div style="font-size: 93.3%">
         <div class="alert alert-info">
-          <div>Format:</div>
+          <div><b>Supported placeholders</b></div>
           <ol>
             <li>
-              <p>Variable: <span class="label label-info">${NUMBER:STRING}</span></p>
-              <p>eg: ${1:obj} ${2:foo} ${3:BAR}</p>
+              <p><b>Variable</b></p>
+              <p>Format: <span class="label label-info">${NUMBER:STRING}</span></p>
+              <p>Example: ${1:obj} ${2:foo} ${3:BAR}</p>
             </li>
             <li>
-              <p>Cursor: <span class="label label-info">${NUMBER}</span></p>
-              <p>eg: ${1} ${2}</p>
+              <p><b>Cursor</b></p>
+              <p>Format: <span class="label label-info">${NUMBER}</span></p>
+              <p>Example: ${1} ${2}</p>
             </li>
           </ol>
-        </div>
 
-        <div class="alert alert-info">
-          <div>Notes:</div>
-          <ol>
-            <li>
-              <span class="label label-info">NUMBER</span> means order, which should start with 1.
-            </li>
-            <li>
-              Cursor would be ignored if it has the same order with variables.
-            </li>
-          </ol>
+          <p><b>Demo</b></p>
+          <p style="margin-bottom: 9px;">&lt;a href=&quot;${1}&quot; title=&quot;${2:title}&quot;&gt;${2}&lt;/a&gt;${3}</p>
+
+          <p><b>Caveat</b></p>
+          <p><span class="label label-info">NUMBER</span> means order, which should start with 1.</p>
         </div>
       </div>
     </div>
