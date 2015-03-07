@@ -22,17 +22,23 @@ define(function (require, exports, module) {
 
   var handlers;
   function activeEditorChangeHandler (bracketsEvent, focusedEditor, lostEditor) {
+
     if (lostEditor) {
+      lostEditor.off = lostEditor.off || $(lostEditor).off;
+
       if(hinter){
-        $(lostEditor).off("keydown", handlers.keydown);
-        $(lostEditor).off("keypress", handlers.keypress);
-        $(lostEditor).off("keyup", handlers.keyup);
-        $(lostEditor).off("change", handlers.change);
-        $(lostEditor).off("cursorActivity", handlers.cursorActivity);
+        lostEditor
+          .off("keydown", handlers.keydown)
+          .off("keypress", handlers.keypress)
+          .off("keyup", handlers.keyup)
+          .off("change", handlers.change)
+          .off("cursorActivity", handlers.cursorActivity);
       }
     }
 
     if (focusedEditor) {
+      focusedEditor.on = focusedEditor.on || $(focusedEditor).on;
+
       if (!hinter) {
         hinter = new Hinter(focusedEditor);
         hintWidget = new HintWidget();
@@ -49,11 +55,12 @@ define(function (require, exports, module) {
         cursorActivity: hinter.cursorActivityHandler.bind(hinter)
       }
 
-      $(focusedEditor).on("keydown", handlers.keydown);
-      $(focusedEditor).on("keypress", handlers.keypress);
-      $(focusedEditor).on("keyup", handlers.keyup);
-      $(focusedEditor).on("change", handlers.change);
-      $(focusedEditor).on("cursorActivity", handlers.cursorActivity);
+      focusedEditor
+        .on("keydown", handlers.keydown)
+        .on("keypress", handlers.keypress)
+        .on("keyup", handlers.keyup)
+        .on("change", handlers.change)
+        .on("cursorActivity", handlers.cursorActivity);
     }
   }
 
@@ -67,7 +74,8 @@ define(function (require, exports, module) {
       activeEditorChangeHandler(null, editor, null);
     }
 
-    $(EditorManager).on('activeEditorChange', activeEditorChangeHandler);
+    EditorManager.on = EditorManager.on || $(EditorManager).on;
+    EditorManager.on('activeEditorChange', activeEditorChangeHandler);
   });
 
 });
