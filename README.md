@@ -6,7 +6,7 @@ Imitate snippets feature of Sublime Text, and bring it to [Brackets](http://brac
 
 # Features
 1. Insert snippets by pressing `Tab` key
-2. Select next variables or place cursor by pressing `Tab` key
+2. Select next variables or cursors by pressing `Tab` key
 3. Edit multiple variables at one time
 4. Fully customize your own snippets in `Snippets Manager` (See below)
 5. Hang around `Snippets Library` and find some other awesome snippets! (See below)
@@ -15,7 +15,7 @@ Imitate snippets feature of Sublime Text, and bring it to [Brackets](http://brac
 ![snippets-manager.png](http://edwardchu.org/assets/images/snippets-manager@2x.png "Snippets Manager Screenshot")
 
 # Snippets Library
-![snippets-library.png](http://edwardchu.org/assets/images/snippets-library@2x.png "Snippets Library Screenshot")
+![snippets-library.png](https://cloud.githubusercontent.com/assets/6262943/6541326/fdf7a3f8-c503-11e4-8a3d-c3f726b38218.png "Snippets Library Screenshot")
 > The library is currently maintained by myself, you can contribute more snippets by simply creating an issue and submit your snippets, or
 > 
 > 1. Fork this project;
