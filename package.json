@@ -6,7 +6,7 @@
   "author": "Edward Chu <crazyzyt@gmail.com> (https://github.com/chuyik)",
   "keywords": ["snippet", "css", "html", "js", "hint", "sublime", "completion", "brackets", "javascript", "autocomplete"],
   "license": "MIT",
-  "version": "1.6.4",
+  "version": "1.7.0",
   "engines": { "brackets": ">=0.0.0" },
   "main": "main.js",
   "scripts": {
