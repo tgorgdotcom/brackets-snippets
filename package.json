@@ -4,7 +4,7 @@
   "description": "Imitate Sublime Text's behavior of snippets, and bring it to Brackets.",
   "homepage": "https://github.com/chuyik/brackets-snippets",
   "author": "Edward Chu <crazyzyt@gmail.com> (https://github.com/chuyik)",
-  "keywords": ["snippet", "css", "html", "js", "hint", "sublime", "completion", "brackets"],
+  "keywords": ["snippet", "css", "html", "js", "hint", "sublime", "completion", "brackets", "javascript", "autocomplete"],
   "license": "MIT",
   "version": "1.6.4",
   "engines": { "brackets": ">=0.0.0" },
