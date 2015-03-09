@@ -18,7 +18,7 @@
       </div>
 
       <!-- Import Panel -->
-      <div class="well" ng-if="curPanel===0">
+      <div class="m-top-sm well" ng-if="curPanel===0">
         <div><b>1. Choose file: <span class="text-warning">(.yml or .yaml)</span></b></div>
         <div><input type="file" ng-model="import.file" valid-file read-file accept-suffix="yml,yaml" error-handler="fileLoadError" success-handler="fileLoadSuccess"></div>
         <div ng-if="import.errCode">
@@ -48,7 +48,7 @@
       </div>
 
       <!-- Export Panel -->
-      <div class="well" ng-if="curPanel===1">
+      <div class="m-top-sm well" ng-if="curPanel===1">
         <div><b>Choose export scheme:</b></div>
         <div class="radios">
           <label class="radio">
