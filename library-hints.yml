@@ -231,6 +231,12 @@
   text: |
         text-shadow: ${1:horizontal}px ${2:vertical}px ${3:blur-radius}px ${4:#eee};${5}
 
+- trigger: cap
+  scope: css
+  description: Capitalize
+  text: |
+        text-transform: capitalize;
+
 - trigger: upp
   scope: css
   description: Upper Case
