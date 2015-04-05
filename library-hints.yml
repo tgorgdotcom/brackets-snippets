@@ -602,7 +602,15 @@
 
 - trigger: foreach
   scope: php
-  description: foreach
+  description: foreach value
+  text: |
+        foreach ($${1:var} as $${2:value}) {
+          ${3}
+        }
+
+- trigger: foreachkey
+  scope: php
+  description: foreach key value
   text: |
         foreach ($${1:var} as $${2:key} => $${3:value}) {
           ${4}
@@ -610,9 +618,17 @@
 
 - trigger: foreachalt
   scope: php
+  description: foreach value alternative
+  text: |
+        foreach ($${1:var} as $${2:value}):
+         ${3}
+        endforeach;
+
+- trigger: foreachkeyalt
+  scope: php
   description: foreach alternative
   text: |
-        foreach ($${1:var} as $${2:key} => $${3:value}):
+        foreach ($${1:var} as $${3:value}):
          ${4}
         endforeach;
 
