@@ -432,6 +432,19 @@
           ${4}
         };
 
+- trigger: sw
+  scope: javascript
+  description: switch statement
+  tagHide: true
+  text: |
+        switch(${1:expression}) {
+          case ${2:n}:
+              ${3://code block}
+              break;
+          default:
+              ${4://default code block}
+        }
+
 # ---
 # Javascript: Timer
 # ---
