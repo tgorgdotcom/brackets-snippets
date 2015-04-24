@@ -770,3 +770,46 @@
   description: new variable
   text: |
         $${1:var} = ${2:value};
+
+- trigger: =?
+  scope: php
+  description: short echo(>=5.4.0)
+  text: |
+        <?= ${1} ;?>
+
+- trigger: date
+  scope: php
+  description: php date
+  text: |
+        date('${1}')
+
+- trigger: dateo
+  scope: php
+  description: php DateTime
+  text: |
+        DateTime()
+
+
+- trigger: urldecode
+  scope: php
+  description: url decode
+  text: |
+        urldecode(${1:str})
+
+- trigger: urlencode
+  scope: php
+  description: url encode
+  text: |
+        urlencode(${1:str})
+
+- trigger: array_sort
+  scope: php
+  description: url encode
+  text: |
+        asort(${1:array})
+
+- trigger: array_sort_reverse
+  scope: php
+  description: url encode
+  text: |
+        arsort(${1:array})
