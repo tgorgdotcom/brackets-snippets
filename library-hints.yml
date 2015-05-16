@@ -575,7 +575,8 @@
   scope: php
   description: if
   text: |
-        if (${1:condition}) {
+        if (${1:condition})
+        {
           ${2}
         }
 
@@ -583,9 +584,12 @@
   scope: php
   description: if else
   text: |
-        if (${1:condition}) {
+        if (${1:condition})
+        {
           ${2}
-        } else {
+        }
+        else
+        {
           ${3}
         }
 
@@ -607,7 +611,8 @@
   scope: php
   description: for
   text: |
-        for ($i = ${1:init}; $i < ${2:length}; $i++) {
+        for ($i = ${1:init}; $i < ${2:length}; $i++)
+        {
           ${3}
         }
 
@@ -615,7 +620,8 @@
   scope: php
   description: for decremental
   text: |
-        for ($i = ${1:init}; $i > ${2:length}; $i--) {
+        for ($i = ${1:init}; $i > ${2:length}; $i--) 
+        {
           ${3}
         }
 
@@ -623,7 +629,8 @@
   scope: php
   description: foreach value
   text: |
-        foreach ($${1:var} as $${2:value}) {
+        foreach ($${1:var} as $${2:value})
+        {
           ${3}
         }
 
@@ -631,7 +638,8 @@
   scope: php
   description: foreach key value
   text: |
-        foreach ($${1:var} as $${2:key} => $${3:value}) {
+        foreach ($${1:var} as $${2:key} => $${3:value})
+        {
           ${4}
         }
 
@@ -663,13 +671,15 @@
   scope: php
   description: switch
   text: |
-        switch ($${1:var}) {
+        switch ($${1:var})
+        {
           case ${2:'value'}:
             ${3}
             break;
 
           default:
             break;
+        }
 
 - trigger: switchalt
   scope: php
@@ -733,13 +743,13 @@
   scope: php
   description: empty
   text: |
-        empty($${1:var})
+        empty($${1:var});
 
 - trigger: isset
   scope: php
   description: isset
   text: |
-        isset($${1:var})
+        isset($${1:var});
 
 - trigger: array
   scope: php
@@ -788,7 +798,6 @@
   description: php DateTime
   text: |
         DateTime()
-
 
 - trigger: urldecode
   scope: php
