@@ -96,12 +96,17 @@ define(function (require, exports, module) {
 
     // Prepare Data
     define('languages', function() {
-      return  _.map(LanguageManager.getLanguages(), function (language) {
+      var languages = _.map(LanguageManager.getLanguages(), function (language) {
         return {
           id: language.getId(),
           name: language.getName()
         }
       })
+      languages.unshift({
+        id: '_any',
+        name: '--- Any ---'
+      })
+      return languages
     })
     define('userHints', function() {
       return self.hinter.allHints
