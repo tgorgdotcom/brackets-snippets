@@ -441,14 +441,15 @@
 - trigger: sw
   scope: javascript
   description: switch statement
+  tag: VanillaJS
   tagHide: true
   text: |
         switch(${1:expression}) {
-          case ${2:n}:
-              ${3://code block}
-              break;
+          case ${2:value}:
+            ${3}
+            break;
           default:
-              ${4://default code block}
+            break;
         }
 
 # ---
