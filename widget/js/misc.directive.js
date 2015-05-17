@@ -81,5 +81,66 @@ define('miscDirective', ['app'], function(app) {
         });
       }
     }
-  });
+  })
+  .directive('myTooltip', function ($document, $timeout) {
+
+    return {
+      link: function ($scope, elem, attrs) {
+        var template = attrs.template
+
+        var tmpEle
+        if (template.charAt(0) === '#') {
+          tmpEle = angular.element(template)
+        }
+
+        if (!tmpEle)
+          return
+        
+        tmpEle.hide()
+
+        var isHoverTmp, isHoverElem
+
+        tmpEle.on('mouseenter', function () {
+          isHoverTmp = true
+        })
+
+        tmpEle.on('mouseleave', function () {
+          isHoverTmp = false
+          $timeout(function () {
+            if (tmpEle && !isHoverElem) {
+              tmpEle.hide()
+              isHoverTmp = false
+            }
+          }, 50)
+        })
+
+        elem.on('mouseenter', function () {
+          isHoverElem = true
+          if (tmpEle) {
+            tmpEle.css({
+              position: 'absolute',
+              top: elem.position().top - 20,
+              left: elem.position().left - 10,
+              'z-index': 10,
+              border: '30px rgba(0, 0, 0, 0)',
+              'border-style': 'solid none none solid',
+              height: 250,
+              'overflow-y': 'scroll'
+            })
+            tmpEle.show()
+          }
+        })
+
+        elem.on('mouseleave', function () {
+          isHoverElem = false
+          $timeout(function () {
+            if (tmpEle && !isHoverTmp) {
+              tmpEle.hide()
+              isHoverElem = false
+            }
+          }, 50)
+        })
+      }
+    }
+  })
 });
