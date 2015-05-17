@@ -17,7 +17,7 @@
     <label class="label-inline">Scope</label>
     <div>
       <select ng-options="lang.id as lang.name for lang in languages | orderBy: 'name'" ng-model="editingObj.scope" required ng-change="scopeChanged()"></select>
-      <div class="btn btn-mini" ng-if="lastScope && !originalObj" style="margin-top:5px;" ng-click="useLastScope()">
+      <div class="btn btn-mini last-scope-btn" ng-if="lastScope && !originalObj" ng-click="useLastScope()">
         Use last scope: {{getLanguageName(lastScope)}}
       </div>
     </div>

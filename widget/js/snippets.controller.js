@@ -1,5 +1,5 @@
 define('snippetsCtrl', ['app', '_', 'userHints', 'languages'], function (app, _, snippets, languages) {
-  app.controller('SnippetsCtrl', function ($rootScope, $scope, $document, $timeout) {
+  app.controller('SnippetsCtrl', function ($rootScope, $scope, $document, $timeout, $window) {
     $scope.editingObj = null;
 
     $rootScope.snippets = snippets;
@@ -17,30 +17,68 @@ define('snippetsCtrl', ['app', '_', 'userHints', 'languages'], function (app, _,
       })
     }
 
+    var editListener
+    function confirmCancel () {
+      if ($rootScope.editing) {
+        if ($window.confirm('Do you want to discard the changes?')) {
+          $rootScope.editing = false
+          editListener()
+          return true
+        }
+      }
+    }
+
     $scope.getLanguageName = function (key) {
       return _.find($scope.languages, {id: key}).name || key;
     }
 
     $scope.toLibrary = function () {
+      if ($rootScope.editing && !confirmCancel()) return
+
       $scope.isLibrary = !$scope.isLibrary;
       $scope.isSetting = false;
     }
 
     $scope.toSetting = function () {
+      if ($rootScope.editing && !confirmCancel()) return
+
       $scope.isSetting = !$scope.isSetting;
       $scope.isLibrary = false;
     }
 
     $scope.toNew = function () {
+      if ($rootScope.editing && !confirmCancel()) return
+
       $scope.originalObj = null;
       $scope.editingObj = {};
       $scope.triggerErr = false;
     }
 
     $scope.toEdit = function (snippet) {
+      if ($rootScope.editing && !confirmCancel()) return
+
+      if (editListener)
+        editListener()
+
       $scope.originalObj = snippet;
       $scope.editingObj = angular.copy(snippet);
       $scope.triggerErr = false;
+
+      var _flag = false
+
+      // listen for object changes
+      editListener = $scope.$watch("editingObj", function (newValue, oldValue) {
+
+        if (!_flag) return (_flag = true)  // ignore the first time
+
+        if (!newValue)
+          return editListener()
+
+        if (newValue && _.keys(newValue).length) {
+          $rootScope.editing = true
+          editListener()
+        }
+      }, true);
 
       $scope.scopeChanged = function () {
         // mapping the mode from brackets to ace
@@ -96,8 +134,10 @@ define('snippetsCtrl', ['app', '_', 'userHints', 'languages'], function (app, _,
     }
 
     $scope.cancelEdit = function () {
+      if ($rootScope.editing && !confirmCancel()) return
       $scope.originalObj = null;
       $scope.editingObj = null;
+      $rootScope.editing = false;
     }
 
     $scope.remove = function (snippet) {
@@ -184,6 +224,8 @@ define('snippetsCtrl', ['app', '_', 'userHints', 'languages'], function (app, _,
         // push new snippet
         group.push(editingObj);
       }
+
+      $rootScope.editing = false;
 
       if (toCreateFlag) {
         $scope.toNew();
