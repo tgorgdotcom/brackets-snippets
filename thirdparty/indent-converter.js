@@ -25,19 +25,37 @@ define(function(require, exports, module) {
     var lines = str.split(lineSeparator);
     var len = lines.length;
 
-    var spaces = new Array(spaceUnits + 1).join(SPACE);
+    var whiteSpaceUnit;
+    if (useTabChar)
+      whiteSpaceUnit = TAB;
+    else
+      whiteSpaceUnit = new Array(spaceUnits + 1).join(SPACE);
 
-    var _reg1 = new RegExp(spaces, 'g');
-    var _reg2 = /\t/g;
-    // each line
+    var indentUnit = -1;
+    // iterate each line
     for (var i = 0; i < len; i++) {
-      if (useTabChar) {
-        lines[i] = lines[i].replace(_reg1, TAB);
-      } else {
-        lines[i] = lines[i].replace(_reg2, spaces);
-      }
+      lines[i] = lines[i].replace(/^ */, _lineHandler)
     }
+
     return lines.join(lineSeparator);
+    
+    function _lineHandler (spaces) {
+      if (!spaces.length) return spaces
+
+      // guess the indentation size through the first indented line
+      if (indentUnit === -1)
+        indentUnit = spaces.length
+
+      var replaceLength = Math.floor(spaces.length / indentUnit)
+      var leftLength = spaces.length - replaceLength * indentUnit
+      var leftStr = spaces.substr(replaceLength, leftLength)
+
+      return new Array(replaceLength + 1).join(whiteSpaceUnit) + leftStr
+    }
+  }
+
+  function replaceLine (line, indentUnit) {
+
   }
 
   function replaceAt (str, index, character) {
