@@ -71,6 +71,8 @@ define(function (require, exports, module) {
       paths: {
         highlight:  './thirdparty/highlight/highlight.pack',
         _: './thirdparty/lodash',
+        ace: './thirdparty/ace-builds/src-min-noconflict/ace',
+        uiAce: './thirdparty/angular-ui-ace/ui-ace.min',
         jsyaml: '../thirdparty/js-yaml.min',
         angular: './thirdparty/angular.min',
         app: './js/app',
@@ -87,6 +89,9 @@ define(function (require, exports, module) {
       shim: {
         'angular': {
           exports: 'angular'
+        },
+        'uiAce': {
+          'angular': 'angular'
         }
       }
     })

@@ -1,5 +1,5 @@
-define('app', ['angular', 'require'], function(angular, require) {
-  var app = angular.module('snippets-manager', []);
+define('app', ['angular', 'require', 'uiAce', 'ace'], function(angular, require) {
+  var app = angular.module('snippets-manager', ['ui.ace']);
 
   app.run(function($rootScope) {
 
