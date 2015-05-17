@@ -1,31 +1,32 @@
 <div class="form-horizontal">
-  <div class="control-group" ng-class="{error: triggerErr || form.trigger.$error.pattern}">
-    <label class="control-label">Trigger</label>
-    <div class="controls">
+  <div class="m-bottom-sm" ng-class="{error: triggerErr || form.trigger.$error.pattern}">
+    <label class="label-inline">Trigger</label>
+    <div>
       <input type="text" name="trigger" ng-model="editingObj.trigger" placeholder="Trigger Key" required ng-pattern="triggerPattern">
       <div class="help-block" ng-show="triggerErr">Trigger is conflicted in current scope, please choose another one.</div>
       <div class="help-block" ng-show="form.trigger.$error.pattern">White spaces and punctuations(eg: ,./) are NOT permitted.</div>
     </div>
   </div>
-  <div class="control-group">
-    <label class="control-label">Description<span style="display: block;font-size: 10px;">(Optional)</span></label>
-    <div class="controls">
+  <div class="m-bottom-sm">
+    <label class="label-inline">Description<span style="font-size: 10px;">(Optional)</span></label>
+    <div>
       <input type="text" ng-model="editingObj.description" placeholder="Description">
     </div>
   </div>
-  <div class="control-group">
-    <label class="control-label">Scope</label>
-    <div class="controls">
-      <select ng-options="lang.id as lang.name for lang in languages | orderBy: 'name'" ng-model="editingObj.scope" required></select>
+  <div class="m-bottom-sm">
+    <label class="label-inline">Scope</label>
+    <div>
+      <select ng-options="lang.id as lang.name for lang in languages | orderBy: 'name'" ng-model="editingObj.scope" required ng-change="scopeChanged()"></select>
       <div class="btn btn-mini" ng-if="lastScope && !originalObj" style="margin-top:5px;" ng-click="useLastScope()">
         Use last scope: {{getLanguageName(lastScope)}}
       </div>
     </div>
   </div>
-  <div class="control-group">
-    <label class="control-label">Text</label>
-    <div class="controls">
-      <textarea rows="3" ng-model="editingObj.text" placeholder="Snippet Text" required style="width:100%"></textarea>
+  <div>
+    <label>Text <i class="icon-question-sign" my-tooltip template="#text_instructions"></i></label>
+    <div>
+      <div ui-ace="{mode: mode}" ng-model="editingObj.text"></div>
+    </div>
 
       <!-- Instructions -->
       <div style="font-size: 93.3%">

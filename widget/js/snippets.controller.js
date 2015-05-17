@@ -41,6 +41,58 @@ define('snippetsCtrl', ['app', '_', 'userHints', 'languages'], function (app, _,
       $scope.originalObj = snippet;
       $scope.editingObj = angular.copy(snippet);
       $scope.triggerErr = false;
+
+      $scope.scopeChanged = function () {
+        // mapping the mode from brackets to ace
+        var ret = mappingMode($scope.editingObj.scope)
+        if (ret)
+          $scope.mode = ret
+      }
+
+      $scope.scopeChanged()
+
+      /**
+       * "_any", "audio", "bash", "binary", "c", "clojure", 
+       * "coffeescript", "cpp", "csharp", "css", "dart", "diff", 
+       * "ejs", "erb_html", "gfm", "groovy", "haskell", "html", 
+       * "hx", "image", "java", "javascript", "json", "jsx", "less", 
+       * "lua", "markdown", "perl", "php", "properties", "python", 
+       * "ruby", "sass", "scala", "scss", "sql", "svg", "unknown", 
+       * "vb", "vbscript", "xml", "yaml"
+       * 
+       * @param  {String} mode    Language Id
+       * @return {String}         ace mode
+       */
+      function mappingMode (mode) {
+        if (!mode)
+          return false
+
+        switch (mode) {
+          case '_any':
+          case 'audio':
+          case 'binary':
+          case 'image':
+          case 'unknown':
+            return false
+          case 'bash':
+            return 'sh'
+          case 'c':
+          case 'cpp':
+            return 'c_cpp'
+          case 'coffeescript':
+            return 'coffee'
+          case 'erb_html':
+            return 'html_ruby'
+          case 'gfm':
+            return 'markdown'
+          case 'hx':
+            return 'haxe'
+          case 'vb':
+            return 'vbscript'
+        }
+
+        return mode
+      }
     }
 
     $scope.cancelEdit = function () {
