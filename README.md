@@ -36,10 +36,11 @@ Failed to download it in Brackets? Try the alternative instructions:
 3. Restart Brackets
 
 # Todo
-1. ~~Show snippets according to code context rather than file type, such as supporting internal style sheet~~
-2. Add [Environment Variables](http://docs.sublimetext.info/en/latest/extensibility/snippets.html#environment-variables) support like what Sublime Text provides
-3. ~~Allow import/export snippets (yaml format)~~
-4. Allow `Alt(Option)+Tab` to focus previous variables
+1. Support more triggers like `{{`  `/*` (#10)
+2. Insert keystroke (#30)
+3. Support ctrl/cmd-save
+4. Work with emmet
+5. Add [Environment Variables](http://docs.sublimetext.info/en/latest/extensibility/snippets.html#environment-variables) support like what Sublime Text provides (Anyone need this?)
 
 # Credits
 1. [JavaScript & NodeJS Snippets for Sublime Text 2/3](https://github.com/zenorocha/sublime-javascript-snippets)
