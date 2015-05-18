@@ -3,18 +3,19 @@ define('settingsCtrl', ['app', '_', 'settingsData', 'jsyaml'], function (app, _,
 
     $scope.settingsData = settingsData;
 
-    $scope.counter = 0;
+    var flag = false;
 
     $scope.$watch('settingsData', function(newVal, oldVal) {
-      if ($scope.counter++) {
-        prefsChanged(newVal);
+      if (!flag)
+        return (flag = true)
 
-        // prevent from users toggle too fast
-        $scope.saving = true;
-        $timeout(function() {
-          $scope.saving = false;
-        }, 300)
-      }
+      prefsChanged(newVal);
+
+      // prevent from users toggle too fast
+      $scope.saving = true;
+      $timeout(function() {
+        $scope.saving = false;
+      }, 300)
     }, true)
 
     $scope.togglePanel = function (idx) {

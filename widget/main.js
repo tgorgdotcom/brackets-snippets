@@ -75,6 +75,7 @@ define(function (require, exports, module) {
         uiAce: './thirdparty/angular-ui-ace/ui-ace.min',
         jsyaml: '../thirdparty/js-yaml.min',
         angular: './thirdparty/angular.min',
+        keystroke: '../thirdparty/keystroke-converter',
         app: './js/app',
         snippetsCtrl: './js/snippets.controller',
         settingsCtrl: './js/settings.controller',
@@ -120,9 +121,11 @@ define(function (require, exports, module) {
       return HintManager.loadLibraryHints()
     })
     define('settingsData', function() {
-      var defPref = PreferencesManager.getExtensionPrefs(".").base;
+      var basePref = PreferencesManager.getExtensionPrefs(".").base;
+      var appPref = PreferencesManager.getExtensionPrefs("edc.brackets-snippets");
       return {
-        '_insertHintOnTab': defPref.get('insertHintOnTab')
+        '_insertHintOnTab': basePref.get('insertHintOnTab'),
+        'keyNext': appPref.get('keyNext')
       }
     })
 
@@ -229,7 +232,6 @@ define(function (require, exports, module) {
       // brackets-snippets prefs
       else {
         pref = PreferencesManager.getExtensionPrefs("edc.brackets-snippets");
-        k = 'edc.brackets-snippets.' + k;
       }
 
       pref.set(k, v);

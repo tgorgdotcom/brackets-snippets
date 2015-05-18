@@ -1,4 +1,4 @@
-define('miscDirective', ['app'], function(app) {
+define('miscDirective', ['app', 'keystroke'], function(app, keystroke) {
   app.directive('blink', function($timeout) {
     return {
       link: function ($scope, elem) {
@@ -143,4 +143,24 @@ define('miscDirective', ['app'], function(app) {
       }
     }
   })
+  .directive('keystroke', function() {
+    return {
+      require: 'ngModel',
+      link: function($scope, elem, attrs, ngModel) {
+        ngModel.$validators.keystroke = function(modelValue, viewValue) {
+
+          if (ngModel.$isEmpty(modelValue))
+            return true;
+
+          modelValue = modelValue.replace(/\s/g, '')
+
+          ngModel.$setViewValue(modelValue)
+          ngModel.$render();
+
+          return keystroke.parse(modelValue);
+        };
+      }
+    };
+  })
+
 });

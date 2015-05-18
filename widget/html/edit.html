@@ -3,8 +3,8 @@
     <label class="label-inline">Trigger</label>
     <div>
       <input type="text" name="trigger" ng-model="editingObj.trigger" placeholder="Trigger Key" required ng-pattern="triggerPattern">
-      <div class="help-block" ng-show="triggerErr">Trigger is conflicted in current scope, please choose another one.</div>
-      <div class="help-block" ng-show="form.trigger.$error.pattern">White spaces and punctuations(eg: ,./) are NOT permitted.</div>
+      <div class="help-block error" ng-show="triggerErr">Trigger is conflicted in current scope, please choose another one.</div>
+      <div class="help-block error" ng-show="form.trigger.$error.pattern">White spaces and punctuations(eg: ,./) are NOT permitted.</div>
     </div>
   </div>
   <div class="m-bottom-sm">

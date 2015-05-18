@@ -10,6 +10,23 @@
   </div>
 
   <div class="control-group">
+    <label class="control-label">Keystrokes</label>
+    <div class="controls">
+      <!-- <div class="well well-small">
+        <label class="inline-block m-right-sm">Insert snippets: </label>
+        <input type="text" name="keyInsert" disabled>
+        <div class="m-top-sm text-info">Have no clue so far...</div>
+      </div> -->
+      <div class="well well-small">
+        <label class="inline-block m-right-sm">Select next variable: </label>
+        <input type="text" name="keyNext" ng-model="settingsData.keyNext" placeholder="Default: tab" keystroke>
+        <div class="m-top-sm text-info">Examples: ctrl+d, cmd+alt+/</div>
+        <div class="help-block error" ng-show="form.keyNext.$error.keystroke">Unrecognized or invalid keystroke.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="control-group">
     <label class="control-label">Import / Export</label>
     <div class="controls">
       <div>
