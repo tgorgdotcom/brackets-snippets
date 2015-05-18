@@ -162,5 +162,15 @@ define('miscDirective', ['app', 'keystroke'], function(app, keystroke) {
       }
     };
   })
-
+  .directive('focusOn', function ($timeout) {
+    return {
+      link: function ($scope, elem, attrs) {
+        $scope.$watch(attrs.focusOn, function (val) {
+          $timeout(function() {
+            val ? elem.focus() : elem.blur();
+          });
+        });
+      }
+    }
+  })
 });
