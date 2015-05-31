@@ -114,18 +114,20 @@ define('miscDirective', ['app', 'keystroke'], function(app, keystroke) {
           }, 50)
         })
 
+        tmpEle.addClass('mytooltip')
+        var $container = $('.right-panel'), $content = $('.main-view > .content')
         elem.on('mouseenter', function () {
           isHoverElem = true
           if (tmpEle) {
+            var top
+            if (tmpEle.height() > ($container.height() - 100 + $container.scrollTop()))
+              top = $content.height() - tmpEle.height() - 20
+            else
+              top = elem.position().top
+
             tmpEle.css({
-              position: 'absolute',
-              top: elem.position().top - 20,
-              left: elem.position().left - 10,
-              'z-index': 10,
-              border: '30px rgba(0, 0, 0, 0)',
-              'border-style': 'solid none none solid',
-              height: 250,
-              'overflow-y': 'scroll'
+              top: top,
+              left: elem.position().left
             })
             tmpEle.show()
           }
