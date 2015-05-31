@@ -312,6 +312,18 @@
     }
   }
 
+  .cl-header {
+    margin-top: 32px;
+  }
+
+  .changelog {
+    margin-bottom: 16px;
+    > li:not(.nav-header) {
+      list-style: decimal;
+      margin-left: 25px;
+    }
+  }
+
   [class^="icon-"] {
     background-image: url('./images/glyphicons-halflings.png');
   }
@@ -340,13 +352,6 @@
     &.active:not([disabled]) {
       color: #2D6EB6;
       text-shadow: 1px 4px 6px #DEF, 0 0 0 #000, 1px 4px 6px #DEF;
-    }
-  }
-
-  .normal-list {
-    > li:not(.nav-header) {
-      list-style: decimal;
-      margin-left: 25px;
     }
   }
 
