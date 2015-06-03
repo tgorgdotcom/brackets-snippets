@@ -22,10 +22,6 @@ Imitate snippets feature of Sublime Text, and bring it to [Brackets](http://brac
 > 2. Edit [library-hints.yml](https://github.com/chuyik/brackets-snippets/blob/master/library-hints.yml), then commit changes and push it to your repository;
 > 3. Perform a [pull request](https://github.com/chuyik/brackets-snippets/pulls).
 
-# Snippet Format
-You will see help on snippet creating page. Or check out the examples in `Snippets Library`.
-> Environment variables would be added in future, see Todo#2.
-
 # Installation
 Search `Brackets Snippets (by edc)` in Brackets Extension Manager, and install it.
 
@@ -34,6 +30,9 @@ Failed to download it in Brackets? Try the alternative instructions:
 1. [Download](http://brackets.dnbard.com/extension/edc.brackets-snippets) .zip package of the latest version
 2. Drag the file into the bottom-left position of Extension Manager
 3. Restart Brackets
+
+# Syncing
+Please read [#48](https://github.com/chuyik/brackets-snippets/issues/48)
 
 # Todo
 1. Support more triggers like `{{`  `/*` (#10)
