@@ -823,3 +823,310 @@
   description: url encode
   text: |
         arsort(${1:array})
+
+# ---
+# Php
+# From: https://github.com/migliori/sublime-phpformbuilder
+# ---
+- trigger: setOptions;
+  scope: php
+  description: setOptions();
+  tag: PHP Form Builder
+  tagHide: true
+  text: |
+        $options = array(
+            'horizontalLabelCol'       => 'col-sm-${1:4}',
+            'horizontalOffsetCol'      => 'col-sm-offset-${1:4}',
+            'horizontalElementCol'     => 'col-sm-${2:8}',
+        );
+        $form->setOptions($options);
+
+- trigger: newForm;
+  scope: php
+  description: create new Form;
+  tag: PHP Form Builder
+  tagHide: true
+  text: |
+        use phpformsForm;
+        use phpformsValidatorValidator;
+
+        @session_start();
+        include_once rtrim($_SERVER['DOCUMENT_ROOT'], DIRECTORY_SEPARATOR) . '/${1:phpforms}/Form.php';
+
+        /* =============================================
+        validation if posted
+        ============================================= */
+
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            include_once '${1:phpforms}/Validator/Validator.php';
+            include_once '${1:phpforms}/Validator/Exception.php';
+            $validator = new Validator($_POST);
+            $required = array('name', 'first-name');
+            foreach ($required as $required) {
+                $validator->required()->validate($required);
+            }
+
+            // check for errors
+
+            if ($validator->hasErrors()) {
+                $_SESSION['errors']['${2:my-form}'] = $validator->getAllErrors();
+            } else {
+                $from_email = '${3:you@your-email.com}';
+                $adress = '${3:you@your-email.com}';
+                $subject = '${4:Email Subject}';
+                $filter_values = '${2:my-form}, submit-btn';
+                $sent_message = Form::sendMail($from_email, $adress, $subject, $filter_values);
+                Form::clear('${2:my-form}');
+            }
+        }
+        $form = new Form('${2:my-form}');
+        $form->addInput('text', 'name', '', 'Name : ', 'required=required');
+        $form->addInput('text', 'first-name', '', 'First name : ', 'required=required');
+        $form->addBtn('button', 'cancel', 0, 'Cancel', 'class=btn btn-warning', 'btn-group');
+        $form->addBtn('submit', 'submit-btn', 1, 'Submit', 'class=btn btn-success', 'btn-group');
+        $form->printBtnGroup('btn-group');
+        
+- trigger: setAction
+  scope: php
+  description: setAction($url, $add_get_vars = true);
+  tag: PHP Form Builder
+  tagHide: true
+  text: |
+        $form->setAction(${1:htmlspecialchars($_SERVER["PHP_SELF"])}, ${2:$add_get_vars = true});
+        
+- trigger: addHtml
+  scope: php
+  description: addHtml($html, $element_name = '', $pos = 'after');
+  tag: PHP Form Builder
+  tagHide: true
+  text: |
+        $form->addHtml(${1:$html}, ${2:$element_name = ''}, ${3:$pos = 'after'});
+        
+- trigger: addInputWrapper
+  scope: php
+  description: addInputWrapper($html, $element_name);
+  tag: PHP Form Builder
+  tagHide: true
+  text: |
+        $form->addInputWrapper(${1:'<div class="wrapper"></div>'}, ${2:'element_name'});
+        
+- trigger: addInput;
+  scope: php
+  description: addInput($type, $name, $value = '', $label = '', $attr = '');
+  tag: PHP Form Builder
+  tagHide: true
+  text: |
+        $form->addInput(${1:$type}, ${2:$name}, ${3:$value = ''}, ${4:$label = ''}, ${5:$attr = ''});
+        
+- trigger: groupInputs
+  scope: php
+  description: groupInputs($input1, $input2, $input3 = '');
+  tag: PHP Form Builder
+  tagHide: true
+  text: |
+        $form->groupInputs('${1:field_1}', '${2:field_2}');
+        
+- trigger: addFileUpload
+  scope: php
+  description: addFileUpload($type, $name, $value = '', $label = '', $attr = '', $fileUpload_config = '');
+  tag: PHP Form Builder
+  tagHide: true
+  text: |
+        $fileUpload_config = array(
+        	'xml'                 => ${1:'default'},
+            'uploader'            => ${2:'defaultFileUpload.php'},
+            'btn-text'            => ${3:'Browse ...'},
+            'max-number-of-files' => ${4:3}
+        );
+        $form->addHtml('<span class="help-block">3 files max. Accepted File Types : .pdf, .doc[x], .xls[x], .txt</span>', ${5:$name}, 'after');
+        $form->addFileUpload('file', ${5:$name}, ${6:$value = ''}, ${7:$label = ''}, ${8:$attr = ''}, $fileUpload_config);
+        
+- trigger: addTextarea
+  scope: php
+  description: addTextarea($name, $value = '', $label = '', $attr = '');
+  tag: PHP Form Builder
+  tagHide: true
+  text: |
+        $form->addTextarea(${1:$name}, ${2:$value = ''}, ${3:$label = ''}, ${4:$attr = ''});
+        
+- trigger: addOption
+  scope: php
+  description: addOption($select_name, $value, $txt, $group_name = '', $attr = '');
+  tag: PHP Form Builder
+  tagHide: true
+  text: |
+        $form->addOption(${1:$select_name}, ${2:$value}, ${3:$txt}, ${4:$group_name = ''}, ${5:$attr = ''});
+        
+- trigger: addSelect
+  scope: php
+  description: addSelect($select_name, $label = '', $attr = '', $displayGroupLabels = true);
+  tag: PHP Form Builder
+  tagHide: true
+  text: |
+        $form->addSelect(${1:$select_name}, ${2:$label}, ${3:$attr = ''}, ${4:$displayGroupLabels = true});
+        
+- trigger: addCountrySelect
+  scope: php
+  description: addCountrySelect($select_name, $label = '', $attr = '', $user_options = array());
+  tag: PHP Form Builder
+  tagHide: true
+  text: |
+        $form->addCountrySelect('${1:country}', '${2:Country : }');
+        
+- trigger: addRadio
+  scope: php
+  description: addRadio($group_name, $label, $value, $attr);
+  tag: PHP Form Builder
+  tagHide: true
+  text: |
+        $form->addRadio(${1:$group_name}, ${2:$label}, ${3:$value}, ${4:$attr = ''});
+        
+- trigger: printRadioGroup
+  scope: php
+  description: printRadioGroup($group_name, $label = '', $inline = true, $attr = '');
+  tag: PHP Form Builder
+  tagHide: true
+  text: |
+        $form->printRadioGroup(${1:$group_name}, ${2:$label}, ${3:$inline = true}, ${4:$attr = ''});
+        
+- trigger: addCheckbox
+  scope: php
+  description: addCheckbox($group_name, $label, $name, $value, $attr);
+  tag: PHP Form Builder
+  tagHide: true
+  text: |
+        $form->addCheckbox(${1:$group_name}, ${2:$label}, ${3:$name}, ${4:$value}, ${5:$attr});
+        
+- trigger: printCheckboxGroup
+  scope: php
+  description: printCheckboxGroup($group_name, $label = '', $inline = true, $attr = '');
+  tag: PHP Form Builder
+  tagHide: true
+  text: |
+        $form->printCheckboxGroup(${1:$group_name}, ${2:$label}, ${3:$inline = true}, ${4:$attr = ''});
+        
+- trigger: addBtn
+  scope: php
+  description: addBtn($type, $name, $value, $text, $attr = '', $btnGroupName = '');
+  tag: PHP Form Builder
+  tagHide: true
+  text: |
+        $form->addBtn(${1:$type}, ${2:$name}, ${3:$value}, ${4:$text}, ${5:$attr = ''}, ${6:$btnGroupName = ''});
+   
+- trigger: printBtnGroup
+  scope: php
+  description: printBtnGroup($btnGroupName, $label = '');
+  tag: PHP Form Builder
+  tagHide: true
+  text: |
+        $form->printBtnGroup(${1:$btnGroupName}, ${2:$label = ''});
+
+- trigger: startFieldset
+  scope: php
+  description: startFieldset($legend = '');
+  tag: PHP Form Builder
+  tagHide: true
+  text: |
+        $form->startFieldset(${1:$legend = ''});
+
+- trigger: endFieldset
+  scope: php
+  description: endFieldset();
+  tag: PHP Form Builder
+  tagHide: true
+  text: |
+        $form->endFieldset();
+
+- trigger: addPlugin
+  scope: php
+  description: addPlugin($plugin_name, $selector, $js_content = 'default', $js_replacements = '');
+  tag: PHP Form Builder
+  tagHide: true
+  text: |
+        $form->addPlugin(${1:$plugin_name}, ${2:'#selector'}, ${3:$js_content = 'default'}, ${4:$js_replacements = ''});
+
+- trigger: printIncludes
+  scope: php
+  description: printIncludes($type);
+  tag: PHP Form Builder
+  tagHide: true
+  text: |
+        $form->printIncludes('${1:js | css}');
+
+- trigger: printJsCode
+  scope: php
+  description: printJsCode();
+  tag: PHP Form Builder
+  tagHide: true
+  text: |
+        $form->printJsCode();
+
+- trigger: FormSendMail
+  scope: php
+  description: FormSendMail($from_email, $adress, $subject, $filter_values = '', $values = '');
+  tag: PHP Form Builder
+  tagHide: true
+  text: |
+        $from_email = '${1:you@your-email.com}';
+        $adress = '${2:recipient@email.com}';
+        $subject = '${3:Email Subject}';
+        $filter_values = '${4:my-form, submit-btn}';
+        $sent_message = Form::sendMail($from_email, $adress, $subject, $filter_values);
+
+- trigger: FormSendAdvancedMail
+  scope: php
+  description: FormSendAdvancedMail($options, $values = '');
+  tag: PHP Form Builder
+  tagHide: true
+  text: |
+        $options = array(
+            'from_email'     =>  '${1:you@your-email.com}',
+            'from_name'      =>  '${2:phpforms}', // optional
+            'reply_to'       =>  '${3:you@your-email.com}', // optional
+            'adress'         =>  '${4:john.doe@gmail.com}',
+            'cc'             =>  '${5:john.doe@free.fr}', // optional
+            'bcc'            =>  '${6:john.doe@hotmail.com, john.doe@wanadoo.com}', // optional
+            'subject'        =>  '${7:contact from phpforms}',
+            'attachments'    =>  '${8:img/wallacegromit.jpg}', // optional
+            'html_template'  => '${9:../mailer/email-templates/contact-email.html}', // optional
+            'css_template'   => '${10:../mailer/email-templates/contact-email.css'}, // optional
+            'filter_values'  => '${11:}', // optional
+            'sent_message'   => '${12:<p class="alert alert-success">Your message has been successfully sent !</p>}', // optional
+            'display_errors' => ${13:true} // optional, default false
+         );
+         $sent_message = Form::sendAdvancedMail($options);
+        
+- trigger: FormRegisterValues
+  scope: php
+  description: FormRegisterValues($form_ID);
+  tag: PHP Form Builder
+  tagHide: true
+  text: |
+        Form::registerValues('${1:my-form}');
+
+- trigger: FormMergeValues
+  scope: php
+  description: FormMergeValues(array('step-form-1', 'step-form-2', 'step-form-3'));
+  tag: PHP Form Builder
+  tagHide: true
+  text: |
+        Form::mergeValues(array('${1:step-form-1}', '${2:step-form-2}', '${3:step-form-3}'));
+   
+- trigger: FormClear
+  scope: php
+  description: FormClear($form_ID)
+  tag: PHP Form Builder
+  tagHide: true
+  text: |
+        Form::clear('${1:my-form}');
+   
+- trigger: render
+  scope: php
+  description: render($debug = false);
+  tag: PHP Form Builder
+  tagHide: true
+  text: |
+        $form->render(${1:true | false});
+        
+
+        
