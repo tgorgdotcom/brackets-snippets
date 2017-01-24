@@ -11,6 +11,27 @@ Imitate snippets feature of Sublime Text, and bring it to [Brackets](http://brac
 4. Fully customize your own snippets in `Snippets Manager` (See below)
 5. Hang around `Snippets Library` and find some other awesome snippets! (See below)
 
+# Articles And Tutorials
+#### Traditional Chinese 繁体中文
+- [如何在brackets實現code hinting GSAP](http://www.deartet.com/29487/%E5%A6%82%E4%BD%95%E5%9C%A8brackets%E5%AF%A6%E7%8F%BEcode-hinting-gsap)
+
+#### Japanese 日本語
+- [Brackets × "スニペット管理" で爆速コーディングを実現する](http://qiita.com/assialiholic/items/c6d12a829f87f8d5fdab)
+- [Brackets：様々な言語のスニペット登録・管理ができるエクステンション「Brackets Snippets (by edc)」](http://www.nxworld.net/services-resource/brackets-extension-brackets-snippets-by-edc.html)
+- [Brackets Snippets (by edc)を使って、Sassの&（アンパサンド）をより楽に記述する方法](http://www.nxworld.net/services-resource/brackets-easy-use-sass-ampersand-pseudo-classes.html)
+- [Bracketsの「Emmet」と「Brackets Snippets (by edc)」が競合する問題を解決する](https://jugedred.net/2015/12/14/200424)
+- [WordPress開発が捗りそうなBracketsおすすめ拡張40個まとめ](http://nelog.jp/brackets-extensions)
+
+#### English
+- [My Recommended Brackets Extensions](https://johnpapa.net/my-recommended-brackets-extensions/)
+- [Widely Used Plugins/Extensions of Brackets](http://parthhdave.blogspot.com/2016/10/widely-used-pluginsextensions-of.html)
+
+#### Russian русский язык
+- [Обзор Brackets #0](https://youtu.be/o-uMp8HITHE?t=7m19s)
+
+#### Korean 한국어
+- [코딩의 작업효율을 올려주는 Brackets 확장기능](http://sapjil.net/brackets-extension/#t12)
+
 # Snippets Manager
 ![snippets-manager.png](http://edwardchu.org/assets/images/snippets-manager@2x.png "Snippets Manager Screenshot")
 
